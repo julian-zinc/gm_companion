@@ -12,10 +12,10 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.zinc.gmcompanion.R
+import com.zinc.gmcompanion.model.MechType.*
 import com.zinc.gmcompanion.view.OnFragmentInteractionListener
 import kotlinx.android.synthetic.main.battleetch_classic_ia_fragment.*
 import kotlinx.android.synthetic.main.battleetch_classic_ia_fragment.view.*
-import com.zinc.gmcompanion.model.MechType.*
 
 class BattletechClassicIAFragment : Fragment(), ISecondaryFragment, View.OnClickListener {
 
@@ -65,7 +65,7 @@ class BattletechClassicIAFragment : Fragment(), ISecondaryFragment, View.OnClick
         view?.sniper?.setOnClickListener(this)
 
         view?.attack?.setOnClickListener {
-            view?.mech_attack?.text = Html.fromHtml(
+            view.mech_attack?.text = Html.fromHtml(
                 mListener.getRandomMechAttack(
                     aggressivity_value.text.toString().toInt()
                 )

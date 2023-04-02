@@ -12,14 +12,10 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.zinc.gmcompanion.R
+import com.zinc.gmcompanion.model.FateOdds.*
 import com.zinc.gmcompanion.view.OnFragmentInteractionListener
 import kotlinx.android.synthetic.main.mythic_fragment.*
 import kotlinx.android.synthetic.main.mythic_fragment.view.*
-import com.zinc.gmcompanion.model.FateOdds.*
-import kotlinx.android.synthetic.main.battleetch_classic_ia_fragment.*
-import kotlinx.android.synthetic.main.battleetch_classic_ia_fragment.view.*
-import kotlinx.android.synthetic.main.mythic_fragment.view.btn_less
-import kotlinx.android.synthetic.main.mythic_fragment.view.btn_more
 
 class MythicFragment : Fragment(), ISecondaryFragment, View.OnClickListener {
 

@@ -10,10 +10,10 @@ class Battletech {
     fun generateMechMovement(
         context: Context,
         mechType: MechType,
-        aggresivity: Int
+        aggressivity: Int
     ): String {
         var random = Random.nextInt(1, 7)
-        when (aggresivity) {
+        when (aggressivity) {
             1, 2 -> random -= 2
             3, 4 -> random -= 1
             6, 7 -> random += 1

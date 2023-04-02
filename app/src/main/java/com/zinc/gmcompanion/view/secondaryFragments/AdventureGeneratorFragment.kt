@@ -91,7 +91,7 @@ class AdventureGeneratorFragment: Fragment(), ISecondaryFragment, View.OnClickLi
         val img: ImageView = view?.get(0) as ImageView
         img.setImageResource(image.first)
         img.setColorFilter(Color.rgb(Random.nextInt(50, 256), Random.nextInt(50, 256), Random.nextInt(50, 256)), PorterDuff.Mode.DARKEN)
-        val text: TextView = view?.get(1) as TextView
+        val text: TextView = view[1] as TextView
         text.text = image.second
     }
 }

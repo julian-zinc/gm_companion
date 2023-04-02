@@ -369,7 +369,7 @@ class TheWitcher {
         return builder.toString()
     }
 
-    fun generateOneLifeEvent(context: Context): String {
+    private fun generateOneLifeEvent(context: Context): String {
         return when (Random.nextInt(1, 11)) {
             1, 2, 3, 4 -> if (Random.nextBoolean()) generateOneFortune(context) else generateOneMisfortune(
                 context
@@ -405,7 +405,7 @@ class TheWitcher {
             2 -> "Algo que hiciste (o una acusación en falso) llevó a que te encarcelasen ${Random.nextInt(1, 11)} meses"
             3 -> "Contrajiste una adicción. Puedes escogerla. Consulta la nota al margen (pág. 32)."
             4 -> {
-                val deathCause = when (Random.nextInt(1, 11) * 100) {
+                val deathCause = when (Random.nextInt(1, 11)) {
                     1, 2, 3, 4, 5 -> "murió en un accidente"
                     6, 7, 8 -> "murió a manos de monstruos"
                     else -> "murió a manos de bandidos"
@@ -413,7 +413,7 @@ class TheWitcher {
                 "Un amante, amigo o pariente $deathCause"
             }
             5 -> {
-                val fake = when (Random.nextInt(1, 11) * 100) {
+                val fake = when (Random.nextInt(1, 11)) {
                     1, 2, 3 -> "robo"
                     4, 5 -> "cobardía o traición"
                     6, 7, 8 -> "asesinato"
@@ -423,7 +423,7 @@ class TheWitcher {
                 "Te acusaron falsamente del delito de $fake"
             }
             6 -> {
-                val size = when (Random.nextInt(1, 11) * 100) {
+                val size = when (Random.nextInt(1, 11)) {
                     1, 2, 3 -> "Unos cuantos guardias"
                     4, 5, 6 -> "Todo un pueblo"
                     7, 8 -> "Una ciudad importante"
@@ -432,14 +432,14 @@ class TheWitcher {
                 "$size te persigue para que respondas ante la ley"
             }
             7 -> {
-                when (Random.nextInt(1, 11) * 100) {
+                when (Random.nextInt(1, 11)) {
                     1, 2, 3 -> "Alguien te chantajea"
                     4, 5, 6, 7 -> "Se reveló un secreto traicionero"
                     else -> "Alguien muy cercano a ti te traicionó"
                 }
             }
             8 -> {
-                val sequels = when (Random.nextInt(1, 11) * 100) {
+                val sequels = when (Random.nextInt(1, 11)) {
                     1, 2, 3, 4 -> "quedaste desfigurado (cambia tu Estatus social a Temido)"
                     5, 6 -> "pasaste ${Random.nextInt(1, 11)} meses en tratamiento"
                     7, 8 -> "perdiste ${Random.nextInt(1, 11)} meses de recuerdos de aquel año"
@@ -448,7 +448,7 @@ class TheWitcher {
                 "Sufriste un accidente y $sequels"
             }
             9 -> {
-                when (Random.nextInt(1, 11) * 100) {
+                when (Random.nextInt(1, 11)) {
                     1, 2, 3 -> "Te envenenaron, pierdes permanentemente 5PV"
                     4, 5, 6, 7 -> "Sufres ataques de ansiedad y, en situaciones de estrés, debes realizar tiradas de salvación contra Aturdimiento cada 5 turnos"
                     else -> "Sufres una psicosis grave, oyes voces y eres violento, irracional y depresivo (el DJ controla dichas voces)"

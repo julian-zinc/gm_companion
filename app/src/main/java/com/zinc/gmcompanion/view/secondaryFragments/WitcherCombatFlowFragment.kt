@@ -16,9 +16,9 @@ import kotlinx.android.synthetic.main.witcher_combat_flow_fragment.view.*
 class WitcherCombatFlowFragment: Fragment(), ISecondaryFragment, OnClickListener {
 
     private lateinit var mListener: OnFragmentInteractionListener
-    var defenseOptionsShown = false
-    var attackOptionsShown = false
-    var randomLocationShown = false
+    private var defenseOptionsShown = false
+    private var attackOptionsShown = false
+    private var randomLocationShown = false
 
     companion object {
         fun newInstance() = WitcherCombatFlowFragment()
