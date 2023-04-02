@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mason_family"
+        android:text="@string/battletech_classic_title"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/aggressivity_tag"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Aggressivity" />
+
+            <Button
+                android:id="@+id/btn_less"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:textSize="22sp"
+                android:layout_weight="2"
+                android:textStyle="bold"
+                android:text="-" />
+
+            <EditText
+                android:id="@+id/aggressivity_value"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="22sp"
+                android:textAlignment="center"
+                android:inputType="number"
+                android:text="5" />
+
+            <Button
+                android:id="@+id/btn_more"
+                android:layout_width="0sp"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="+" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="El enemigo siempre gana la iniciativa.
+        \nActiva primero los mechs que están en rango largo de sus armas, luego por orden de velocidad empezando por los más lentos
+        \nElige el tipo de mech para ver cómo se mueve:" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+
+        <TextView
+            android:id="@+id/spacer"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/movement_short"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Walk spd &lt;=4" />
+
+        <TextView
+            android:id="@+id/movement_medium"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:textSize="13sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Walk spd 5-6" />
+
+        <TextView
+            android:id="@+id/movement_long"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Walk spd &gt;7" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/attack_short"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Most dmg with med. range =&lt;6" />
+
+        <Button
+            android:id="@+id/brawler"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Brawler" />
+
+        <Button
+            android:id="@+id/skirmisher"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Skirmisher" />
+
+        <Button
+            android:id="@+id/flanker"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Flanker" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/attack_medium"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Most dmg with med. range 7-12" />
+
+        <Button
+            android:id="@+id/smasher"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Smasher" />
+
+        <Button
+            android:id="@+id/striker"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Striker" />
+
+        <Button
+            android:id="@+id/cavalry"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Cavalry" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/attack_long"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Most dmg with med. range &gt;13" />
+
+        <Button
+            android:id="@+id/artillery"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Artillery" />
+
+        <Button
+            android:id="@+id/support"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Support" />
+
+        <Button
+            android:id="@+id/sniper"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:lines="2"
+            android:text="Sniper" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/mech_movement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/clear_movement"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Clear Movement"
+        android:background="#00000000"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#ccc" />
+
+    <Button
+        android:id="@+id/attack"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="Attack!" />
+
+    <TextView
+        android:id="@+id/mech_attack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+    <Button
+        android:id="@+id/clear_attack"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#00000000"
+        android:text="Clear Attack"
+        android:visibility="gone"/>
+</LinearLayout>

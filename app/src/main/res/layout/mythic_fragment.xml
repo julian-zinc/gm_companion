@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mason_family"
+        android:text="Mythic GM Emulator"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/chaos_tag"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Chaos" />
+
+            <Button
+                android:id="@+id/btn_less"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:textSize="22sp"
+                android:layout_weight="2"
+                android:textStyle="bold"
+                android:text="-" />
+
+            <EditText
+                android:id="@+id/chaos_value"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="22sp"
+                android:textAlignment="center"
+                android:inputType="number"
+                android:text="5" />
+
+            <Button
+                android:id="@+id/btn_more"
+                android:layout_width="0sp"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="+" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tabla de Destino"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        android:textAlignment="center"
+        android:background="#444"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/impossible"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Imposible" />
+
+        <Button
+            android:id="@+id/no_way"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="De ninguna manera" />
+
+        <Button
+            android:id="@+id/very_unlikely"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Muy improbable" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/unlikely"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Improbable" />
+
+        <Button
+            android:id="@+id/fifty_fifty"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="50/50" />
+
+        <Button
+            android:id="@+id/somewhat_likely"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Algo probable" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/likely"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="probable" />
+
+        <Button
+            android:id="@+id/very_likely"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="muy probable" />
+
+        <Button
+            android:id="@+id/near_sure_thing"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Es casi seguro" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/a_sure_thing"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Es seguro" />
+
+        <Button
+            android:id="@+id/has_to_be"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Tiene que ser" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/fate_result"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:background="#222222"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/clear_fate"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Clear Fate"
+            android:background="#00000000"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#ccc" />
+
+    <Button
+        android:id="@+id/random_event"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="Random Event" />
+
+    <TextView
+        android:id="@+id/event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:visibility="gone" />
+    <Button
+        android:id="@+id/clear_event"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#00000000"
+        android:text="Clear Event"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#ccc" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nueva escena"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        android:textAlignment="center"
+        android:background="#444"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/scene_rules"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Una vez hayas establecido lo básico de una nueva escena (recuerda tener actualizado el medidor de Caos), pulsa el botón"/>
+
+    <Button
+        android:id="@+id/new_scene"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="¿Cambios en la escena?" />
+
+    <TextView
+        android:id="@+id/scene_changes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:visibility="gone" />
+    <Button
+        android:id="@+id/clear_scene_changes"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#00000000"
+        android:text="Clear Scene"
+        android:visibility="gone"/>
+
+</LinearLayout>
