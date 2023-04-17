@@ -19,4 +19,5 @@ interface OnFragmentInteractionListener {
     fun getRandomFate(odds: FateOdds, chaosValue: Int): String
     fun getRandomEvent(): String
     fun getRandomSceneChanges(chaosValue: Int): String
+    fun getMechListAndBV(totalBV: Int, tolerance: Int, minMechs: Int, maxMechs: Int): String
 }

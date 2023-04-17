@@ -6,7 +6,7 @@ import kotlin.random.Random
 
 enum class MechType {BRAWLER, SKIRMISHER, FLANKER, SMASHER, STRIKER, CAVALRY, ARTILLERY, SUPPORT, SNIPER}
 
-class Battletech {
+class BattletechAI {
     fun generateMechMovement(
         context: Context,
         mechType: MechType,

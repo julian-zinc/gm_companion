@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mason_family"
+        android:text="@string/battletech_classic_title"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/points_tag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Puntos (Battle Value)" />
+
+        <EditText
+            android:id="@+id/points_value"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="22sp"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:text="2000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/tolerance_tag"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Tolerancia" />
+
+        <Button
+            android:id="@+id/tolerance_less"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:textSize="22sp"
+            android:layout_weight="2"
+            android:textStyle="bold"
+            android:text="-5" />
+
+        <EditText
+            android:id="@+id/tolerance_value"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="22sp"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:text="50" />
+
+        <Button
+            android:id="@+id/tolerance_more"
+            android:layout_width="0sp"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="+5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/min_tag"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Mechs mínimos" />
+
+        <Button
+            android:id="@+id/min_less"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:textSize="22sp"
+            android:layout_weight="2"
+            android:textStyle="bold"
+            android:text="-" />
+
+        <EditText
+            android:id="@+id/min_value"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="22sp"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/min_more"
+            android:layout_width="0sp"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="+" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/max_tag"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Mechs Máximos" />
+
+        <Button
+            android:id="@+id/max_less"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:textSize="22sp"
+            android:layout_weight="2"
+            android:textStyle="bold"
+            android:text="-" />
+
+        <EditText
+            android:id="@+id/max_value"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="22sp"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:text="4" />
+
+        <Button
+            android:id="@+id/max_more"
+            android:layout_width="0sp"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="+" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/create_mech_list"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#999"
+        android:text="Generate Mech Lances" />
+
+    <TextView
+        android:id="@+id/mech_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/clear_mech_list"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#111"
+        android:text="Clear Mech Lances"
+        android:visibility="gone" />
+</LinearLayout>

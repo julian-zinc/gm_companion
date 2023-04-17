@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
         const val BATTLETECH_CLASSIC_TAG = "BATTLETECH_CLASSIC_TAG"
         const val BATTLETECH_KAIJU_TAG = "BATTLETECH_KAIJU_TAG"
         const val MYTHIC_TAG = "MYTHIC_TAG"
+        const val LANCE_GENERATOR_TAG = "LANCE_GENERATOR_TAG"
     }
     private val presenter = Presenter()
 
@@ -56,6 +57,7 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
             is BattletechClassicIAFragment -> BattletechClassicIAFragment.newInstance() to BATTLETECH_CLASSIC_TAG
             is BattletechKaijuIAFragment -> BattletechKaijuIAFragment.newInstance() to BATTLETECH_KAIJU_TAG
             is MythicFragment -> MythicFragment.newInstance() to MYTHIC_TAG
+            is LanceGeneratorFragment -> LanceGeneratorFragment.newInstance() to LANCE_GENERATOR_TAG
             else -> throw IllegalArgumentException("Fragment $secondaryFragment not valid")
         }
     }
@@ -64,28 +66,49 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
         val witcherCombatFlowFragment: WitcherCombatFlowFragment =
             supportFragmentManager.findFragmentByTag(WITCHER_COMBAT_FLOW_TAG) as WitcherCombatFlowFragment
         if (witcherCombatFlowFragment.isVisible) {
-            witcherCombatFlowFragment.setRandomLocation(presenter.theWitcher.getRandomLocationText(applicationContext))
+            witcherCombatFlowFragment.setRandomLocation(
+                presenter.theWitcher.getRandomLocationText(
+                    applicationContext
+                )
+            )
         }
     }
 
-    override fun getRandomIcons(quantity: Int, part: AdventurePart): List<Pair<Int, String>> = presenter.icons.getAdventureIcons(3)
+    override fun getRandomIcons(quantity: Int, part: AdventurePart): List<Pair<Int, String>> =
+        presenter.icons.getAdventureIcons(3)
 
-    override fun getRandomEarlyLife(homeland: WitcherHomeland): List<String> = presenter.theWitcher.generateEarlyLife(applicationContext, homeland)
+    override fun getRandomEarlyLife(homeland: WitcherHomeland): List<String> =
+        presenter.theWitcher.generateEarlyLife(applicationContext, homeland)
 
-    override fun getRandomLifeEvents(age: Int): String = presenter.theWitcher.generateLifeEvents(applicationContext, age)
+    override fun getRandomLifeEvents(age: Int): String =
+        presenter.theWitcher.generateLifeEvents(applicationContext, age)
 
     override fun getRandomStyle(): String = presenter.theWitcher.generateStyle(applicationContext)
-
     override fun getRandomValues(): String = presenter.theWitcher.generateValues(applicationContext)
+    override fun getRandomMechMovement(mechType: MechType, aggresivityValue: Int): String =
+        presenter.battletechAI.generateMechMovement(applicationContext, mechType, aggresivityValue)
 
-    override fun getRandomMechMovement(mechType: MechType, aggresivityValue: Int): String = presenter.battletech.generateMechMovement(applicationContext, mechType, aggresivityValue)
+    override fun getRandomMechAttack(aggresivityValue: Int): String =
+        presenter.battletechAI.generateMechAttack(applicationContext, aggresivityValue)
 
-    override fun getRandomMechAttack(aggresivityValue: Int): String = presenter.battletech.generateMechAttack(applicationContext, aggresivityValue)
-
-    override fun getRandomFate(odds: FateOdds, chaosValue: Int): String  = presenter.mythic.generateFate(applicationContext, odds, chaosValue)
+    override fun getRandomFate(odds: FateOdds, chaosValue: Int): String =
+        presenter.mythic.generateFate(applicationContext, odds, chaosValue)
 
     override fun getRandomEvent(): String = presenter.mythic.generateEvent(applicationContext)
+    override fun getRandomSceneChanges(chaosValue: Int): String =
+        presenter.mythic.generateSceneChanges(applicationContext, chaosValue)
 
-    override fun getRandomSceneChanges(chaosValue: Int): String = presenter.mythic.generateSceneChanges(applicationContext, chaosValue)
+    override fun getMechListAndBV(
+        totalBV: Int,
+        tolerance: Int,
+        minMechs: Int,
+        maxMechs: Int
+    ): String = presenter.battletechLance.generateLances(
+        applicationContext,
+        totalBV,
+        tolerance,
+        minMechs,
+        maxMechs
+    )
 }
 
