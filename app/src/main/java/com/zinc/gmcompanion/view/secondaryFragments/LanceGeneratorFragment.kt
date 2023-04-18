@@ -118,6 +118,24 @@ class LanceGeneratorFragment : Fragment(), ISecondaryFragment, View.OnClickListe
             }
         }
 
+        view?.create_mech_lances?.setOnClickListener {
+            if (points_value.text.toString().toInt() < 1 ||
+                min_value.text.toString().toInt() > max_value.text.toString().toInt()
+            ) {
+                Toast.makeText(context, "Wrong parameters", Toast.LENGTH_SHORT).show()
+            } else {
+                val mechLances = mListener.getMechLances(
+                    points_value.text.toString().toInt(),
+                    tolerance_value.text.toString().toInt(),
+                    min_value.text.toString().toInt(),
+                    max_value.text.toString().toInt()
+                )
+                view.mech_list?.text = Html.fromHtml(mechLances)
+                view.clear_mech_list?.visibility = VISIBLE
+                view.mech_list?.visibility = VISIBLE
+            }
+        }
+
         view?.clear_mech_list?.setOnClickListener {
             view.clear_mech_list?.visibility = GONE
             view.mech_list?.visibility = GONE

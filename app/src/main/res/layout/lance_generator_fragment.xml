@@ -170,12 +170,33 @@
             android:text="+" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/create_mech_list"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#999"
-        android:text="Generate Mech Lances" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <Button
+            android:id="@+id/create_mech_list"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:background="#999"
+            android:text="Give all Mech Combinations" />
+
+        <Button
+            android:id="@+id/create_mech_lances"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:background="#999"
+            android:text="Generate Random Mech Lances" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/mech_list"

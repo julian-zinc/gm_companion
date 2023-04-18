@@ -150,14 +150,12 @@ class BattletechLance {
         }
     }
 
-    fun generateLances(
-        applicationContext: Context?,
+    private fun getAllViableLances(
         totalBV: Int,
         tolerance: Int,
         minMechs: Int,
         maxMechs: Int
-    ): String {
-        val sb = StringBuilder()
+    ): ArrayList<List<Mech>> {
         val filteredList = arrayListOf<Mech>()
         getFullMechList().forEach { if (it.battleValue <= totalBV) filteredList.add(it) }
         val viableLances = arrayListOf<List<Mech>>()
@@ -199,6 +197,19 @@ class BattletechLance {
         }
 
         viableLances.shuffle()
+        return viableLances
+    }
+
+    fun generateMechList(
+        applicationContext: Context?,
+        totalBV: Int,
+        tolerance: Int,
+        minMechs: Int,
+        maxMechs: Int
+    ): String = lancesToString(getAllViableLances(totalBV, tolerance, minMechs, maxMechs))
+
+    private fun lancesToString(viableLances: java.util.ArrayList<List<Mech>>): String {
+        val sb = StringBuilder()
         viableLances.forEach { it ->
             sb.append("<b>·Lance: </b>")
             it.forEach {
@@ -208,5 +219,34 @@ class BattletechLance {
         }
 
         return sb.toString()
+    }
+
+    fun getMechLances(
+        applicationContext: Context?,
+        totalBV: Int,
+        tolerance: Int,
+        minMechs: Int,
+        maxMechs: Int
+    ): String {
+        val viableLances = getAllViableLances(totalBV, tolerance, minMechs, maxMechs)
+        val okLances = arrayListOf<List<Mech>>()
+        val alreadyUsedMechs = arrayListOf<String>()
+        viableLances.forEach { lance ->
+            var isAnyMechOfLanceAlreadyUsed = false
+            lance.forEach { mech ->
+                if (alreadyUsedMechs.contains(mech.model)) {
+                    isAnyMechOfLanceAlreadyUsed = true
+                }
+            }
+            if (!isAnyMechOfLanceAlreadyUsed) {
+                lance.forEach { mech ->
+                    alreadyUsedMechs.add(mech.model)
+                }
+                okLances.add(lance)
+            }
+        }
+
+
+        return lancesToString(okLances)
     }
 }

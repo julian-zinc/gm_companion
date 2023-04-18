@@ -103,7 +103,20 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
         tolerance: Int,
         minMechs: Int,
         maxMechs: Int
-    ): String = presenter.battletechLance.generateLances(
+    ): String = presenter.battletechLance.generateMechList(
+        applicationContext,
+        totalBV,
+        tolerance,
+        minMechs,
+        maxMechs
+    )
+
+    override fun getMechLances(
+        totalBV: Int,
+        tolerance: Int,
+        minMechs: Int,
+        maxMechs: Int
+    ): String = presenter.battletechLance.getMechLances(
         applicationContext,
         totalBV,
         tolerance,

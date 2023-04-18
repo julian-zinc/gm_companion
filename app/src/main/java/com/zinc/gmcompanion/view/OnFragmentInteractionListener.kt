@@ -20,4 +20,5 @@ interface OnFragmentInteractionListener {
     fun getRandomEvent(): String
     fun getRandomSceneChanges(chaosValue: Int): String
     fun getMechListAndBV(totalBV: Int, tolerance: Int, minMechs: Int, maxMechs: Int): String
+    fun getMechLances(totalBV: Int, tolerance: Int, minMechs: Int, maxMechs: Int): String
 }
