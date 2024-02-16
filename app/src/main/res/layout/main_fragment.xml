@@ -20,7 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:constraint_referenced_ids="item_witcher_combat_flow,item_witcher_life_events,item_adventure_generator,item_battletech_classic,item_lance_generator,item_mythic,item_battletech_kaiju,item_2,item_3"
+            app:constraint_referenced_ids="item_witcher_combat_flow,item_witcher_life_events,item_adventure_generator,item_battletech_classic,item_lance_generator,item_alpha_strike_generator,item_mythic,item_battletech_kaiju,item_2,item_3"
             app:flow_wrapMode="aligned"
             app:flow_horizontalGap="10dp"
             app:flow_verticalGap="10dp"
@@ -30,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnSpan="1"
+            android:visibility="gone"
             android:orientation="vertical">
             <ImageView
                 android:layout_width="wrap_content"
@@ -47,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnSpan="1"
+            android:visibility="gone"
             android:orientation="vertical">
             <ImageView
                 android:layout_width="wrap_content"
@@ -114,6 +116,26 @@
                 android:lines="2"
                 android:textAlignment="center"
                 android:text="BT Lance Generator" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_alpha_strike_generator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/mech_alpha_strike_builder" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="2"
+                android:textAlignment="center"
+                android:text="AS Lance Generator" />
         </LinearLayout>
 
         <LinearLayout

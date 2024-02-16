@@ -7,6 +7,7 @@ class Presenter : IPresenter {
     val theWitcher = TheWitcher()
     val battletechAI = BattletechAI()
     val battletechLance = BattletechLance()
+    val battletechAlphaStrike = BattletechAlphaStrike()
     val mythic = Mythic()
     val icons = Icons()
     lateinit var view: IView

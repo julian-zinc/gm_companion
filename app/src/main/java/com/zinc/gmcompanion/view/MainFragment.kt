@@ -25,6 +25,7 @@ class MainFragment : Fragment(), View.OnClickListener {
             item_battletech_classic.id -> mListener.setFragment(BattletechClassicIAFragment())
 //            item_battletech_kaiju.id -> mListener.setFragment(BattletechKaijuIAFragment())
             item_mythic.id -> mListener.setFragment(MythicFragment())
+            item_alpha_strike_generator.id -> mListener.setFragment(AlphaStrikeGeneratorFragment())
             item_lance_generator.id -> mListener.setFragment(LanceGeneratorFragment())
             item_2.id, item_3.id, item_battletech_kaiju.id -> Toast.makeText(
                 context,
@@ -48,6 +49,7 @@ class MainFragment : Fragment(), View.OnClickListener {
         view.item_adventure_generator.setOnClickListener(this)
         view.item_battletech_classic.setOnClickListener(this)
         view.item_lance_generator.setOnClickListener(this)
+        view.item_alpha_strike_generator.setOnClickListener(this)
         view.item_battletech_kaiju.setOnClickListener(this)
         view.item_mythic.setOnClickListener(this)
         view.item_2.setOnClickListener(this)

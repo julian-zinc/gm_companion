@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
         const val BATTLETECH_KAIJU_TAG = "BATTLETECH_KAIJU_TAG"
         const val MYTHIC_TAG = "MYTHIC_TAG"
         const val LANCE_GENERATOR_TAG = "LANCE_GENERATOR_TAG"
+        const val ALPHA_STRIKE_TAG = "ALPHA_STRIKE_TAG"
     }
     private val presenter = Presenter()
 
@@ -58,6 +59,7 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
             is BattletechKaijuIAFragment -> BattletechKaijuIAFragment.newInstance() to BATTLETECH_KAIJU_TAG
             is MythicFragment -> MythicFragment.newInstance() to MYTHIC_TAG
             is LanceGeneratorFragment -> LanceGeneratorFragment.newInstance() to LANCE_GENERATOR_TAG
+            is AlphaStrikeGeneratorFragment -> AlphaStrikeGeneratorFragment.newInstance() to ALPHA_STRIKE_TAG
             else -> throw IllegalArgumentException("Fragment $secondaryFragment not valid")
         }
     }
@@ -119,6 +121,32 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
     ): String = presenter.battletechLance.getMechLances(
         applicationContext,
         totalBV,
+        tolerance,
+        minMechs,
+        maxMechs
+    )
+
+    override fun getASMechListAndPoints(
+        totalPoints: Int,
+        tolerance: Int,
+        minMechs: Int,
+        maxMechs: Int
+    ): String = presenter.battletechAlphaStrike.generateMechList(
+        applicationContext,
+        totalPoints,
+        tolerance,
+        minMechs,
+        maxMechs
+    )
+
+    override fun getASMechLances(
+        totalPoints: Int,
+        tolerance: Int,
+        minMechs: Int,
+        maxMechs: Int
+    ): String = presenter.battletechAlphaStrike.getMechLances(
+        applicationContext,
+        totalPoints,
         tolerance,
         minMechs,
         maxMechs
