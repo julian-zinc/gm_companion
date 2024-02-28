@@ -6,52 +6,6 @@ import android.util.Log
 data class ASMech(var points: Int, var model: String, var variant: String)
 
 class BattletechAlphaStrike {
-    fun getFullMechList(): List<ASMech> = listOf(
-        ASMech(34, "Archer", "ARC-2K"),
-        ASMech(39, "Archer", "ARC-2R"),
-        ASMech(39, "Awesome", "AWS-8Q"),
-        ASMech(38, "Awesome", "AWS-8R"),
-        ASMech(40, "Battlemaster", "BLR-1D"),
-        ASMech(42, "Battlemaster", "BLR-1S"),
-        ASMech(32, "Catapult", "CPLT-K2"),
-        ASMech(31, "Catapult", "CPLT-A1"),
-        ASMech(17, "Commando", "COM-2D"),
-        ASMech(14, "Commando", "COM-1C"),
-        ASMech(27, "Fire Falcon", "A"),
-        ASMech(34, "Fire Falcon", "C"),
-        ASMech(19, "Flea", "FLE-16"),
-        ASMech(14, "Flea", "FLE-15"),
-        ASMech(31, "Griffin", "GRF-1N"),
-        ASMech(31, "Griffin", "GRF-1S"),
-        ASMech(20, "Jenner", "JR7-A"),
-        ASMech(26, "Jenner", "JR7-D"),
-        ASMech(53, "Kodiak", "Standard"),
-        ASMech(59, "Kodiak", "4"),
-        ASMech(21, "Locust", "LCT-1M"),
-        ASMech(19, "Locust", "LCT-1E"),
-        ASMech(34, "Marauder", "MAD-3M"),
-        ASMech(35, "Marauder", "MAD-3R"),
-        ASMech(39, "Orion", "ON1-K"),
-        ASMech(35, "Orion", "ON1-V"),
-        ASMech(26, "Phoenix Hawk", "PXH-1"),
-        ASMech(29, "Phoenix Hawk", "PXH-1K"),
-        ASMech(28, "Rifleman", "RFL-3C"),
-        ASMech(27, "Rifleman", "RFL-4D"),
-        ASMech(30, "Shadow Hawk", "SHD-2H"),
-        ASMech(26, "Shadow Hawk", "SHD-2D"),
-        ASMech(22, "Stinger", "STG-3Gb"),
-        ASMech(14, "Stinger", "STG-3G"),
-        ASMech(35, "Thunderbolt", "TDR-5D"),
-        ASMech(35, "Thunderbolt", "TDR-5SE"),
-        ASMech(22, "Valkyrie", "VLK-QA"),
-        ASMech(19, "Valkyrie", "VLK-QF"),
-        ASMech(36, "Warhammer", "WHM-6D"),
-        ASMech(31, "Warhammer", "WHM-6L"),
-        ASMech(14, "Wasp", "WSP-1A"),
-        ASMech(12, "Wasp", "WSP-1W"),
-        ASMech(35, "Wolverine", "WVR-6K"),
-        ASMech(30, "Wolverine", "WVR-6R"),
-    )
 
     private fun add1MechViableLances(
         filteredList: ArrayList<ASMech>,
@@ -242,4 +196,64 @@ class BattletechAlphaStrike {
         }
         return lancesToString(okLances)
     }
+
+    companion object {
+        fun getMechModelList(): ArrayList<String> {
+            val arrayList = arrayListOf<String>()
+            for (mech in BattletechAlphaStrike.getFullMechList()) if (!arrayList.contains(mech.model)) arrayList.add(
+                mech.model
+            )
+            return arrayList
+        }
+    }
+}
+
+private fun BattletechAlphaStrike.Companion.getFullMechList(): List<ASMech> {
+    return listOf(
+        ASMech(34, "Archer", "ARC-2K"),
+        ASMech(39, "Archer", "ARC-2R"),
+        ASMech(39, "Awesome", "AWS-8Q"),
+        ASMech(38, "Awesome", "AWS-8R"),
+        ASMech(40, "Battlemaster", "BLR-1D"),
+        ASMech(42, "Battlemaster", "BLR-1S"),
+        ASMech(32, "Catapult", "CPLT-K2"),
+        ASMech(31, "Catapult", "CPLT-A1"),
+        ASMech(17, "Commando", "COM-2D"),
+        ASMech(14, "Commando", "COM-1C"),
+        ASMech(27, "Fire Falcon", "A"),
+        ASMech(34, "Fire Falcon", "C"),
+        ASMech(19, "Flea", "FLE-16"),
+        ASMech(14, "Flea", "FLE-15"),
+        ASMech(31, "Griffin", "GRF-1N"),
+        ASMech(31, "Griffin", "GRF-1S"),
+        ASMech(20, "Jenner", "JR7-A"),
+        ASMech(26, "Jenner", "JR7-D"),
+        ASMech(53, "Kodiak", "Standard"),
+        ASMech(59, "Kodiak", "4"),
+        ASMech(21, "Locust", "LCT-1M"),
+        ASMech(19, "Locust", "LCT-1E"),
+        ASMech(34, "Marauder", "MAD-3M"),
+        ASMech(35, "Marauder", "MAD-3R"),
+        ASMech(39, "Orion", "ON1-K"),
+        ASMech(35, "Orion", "ON1-V"),
+        ASMech(26, "Phoenix Hawk", "PXH-1"),
+        ASMech(29, "Phoenix Hawk", "PXH-1K"),
+        ASMech(28, "Rifleman", "RFL-3C"),
+        ASMech(27, "Rifleman", "RFL-4D"),
+        ASMech(30, "Shadow Hawk", "SHD-2H"),
+        ASMech(26, "Shadow Hawk", "SHD-2D"),
+        ASMech(22, "Stinger", "STG-3Gb"),
+        ASMech(14, "Stinger", "STG-3G"),
+        ASMech(35, "Thunderbolt", "TDR-5D"),
+        ASMech(35, "Thunderbolt", "TDR-5SE"),
+        ASMech(22, "Valkyrie", "VLK-QA"),
+        ASMech(19, "Valkyrie", "VLK-QF"),
+        ASMech(36, "Warhammer", "WHM-6D"),
+        ASMech(31, "Warhammer", "WHM-6L"),
+        ASMech(14, "Wasp", "WSP-1A"),
+        ASMech(12, "Wasp", "WSP-1W"),
+        ASMech(35, "Wolverine", "WVR-6K"),
+        ASMech(30, "Wolverine", "WVR-6R"),
+    )
+
 }

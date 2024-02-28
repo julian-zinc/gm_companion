@@ -38,6 +38,6 @@
     <string name="adventure_ending"><b>Final:</b> ¿Cuál es la recompensa? ¿Qué aprenden o descubren? ¿Hay algún giro de la trama final?</string>
     <string name="witcher_life_events">The Witcher Trasfondo</string>
     <string name="witcher_life_title">The Witcher - Generador de trasfondo</string>
-    <string name="battletech_classic">Battlemech IA</string>
+    <string name="battletech_ia">Battlemech IA</string>
     <string name="battletech_kaiju">Battlekaiju IA</string>
 </resources>

@@ -114,10 +114,10 @@ class AlphaStrikeGeneratorFragment : Fragment(), ISecondaryFragment, View.OnClic
                     max_value.text.toString().toInt()
                 )
                 Log.d("patata", "Mech list ${listAndBV.length}")
-                view.mech_list?.text = if (listAndBV.length > 100000) {
+                view.mech_list?.text = if (listAndBV.length > 80000) {
                     "Lista demasiado compleja para procesarla (${listAndBV.length}), reduce las probabilidades"
                 } else {
-                    HtmlCompat.fromHtml(listAndBV, HtmlCompat.FROM_HTML_MODE_LEGACY);
+                    HtmlCompat.fromHtml(listAndBV, HtmlCompat.FROM_HTML_MODE_LEGACY)
                 }
                 view.clear_mech_list?.visibility = VISIBLE
                 view.mech_list?.visibility = VISIBLE
@@ -141,7 +141,7 @@ class AlphaStrikeGeneratorFragment : Fragment(), ISecondaryFragment, View.OnClic
                 view.mech_list?.text = if (mechLances.length > 100000) {
                     "Lista demasiado compleja para procesarla (${mechLances.length}), reduce las probabilidades"
                 } else {
-                    HtmlCompat.fromHtml(mechLances, HtmlCompat.FROM_HTML_MODE_LEGACY);
+                    HtmlCompat.fromHtml(mechLances, HtmlCompat.FROM_HTML_MODE_LEGACY)
                 }
                 view.clear_mech_list?.visibility = VISIBLE
                 view.mech_list?.visibility = VISIBLE

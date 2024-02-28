@@ -20,7 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:constraint_referenced_ids="item_witcher_combat_flow,item_witcher_life_events,item_adventure_generator,item_battletech_classic,item_lance_generator,item_alpha_strike_generator,item_mythic,item_battletech_kaiju,item_2,item_3"
+            app:constraint_referenced_ids="item_witcher_combat_flow,item_witcher_life_events,item_adventure_generator,item_battletech_ia,item_alpha_strike_ia,item_lance_generator,item_alpha_strike_generator,item_mythic,item_battletech_kaiju,item_2,item_3"
             app:flow_wrapMode="aligned"
             app:flow_horizontalGap="10dp"
             app:flow_verticalGap="10dp"
@@ -78,8 +78,9 @@
                 android:textAlignment="center"
                 android:text="@string/adventure_generator" />
         </LinearLayout>
+
         <LinearLayout
-            android:id="@+id/item_battletech_classic"
+            android:id="@+id/item_battletech_ia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnSpan="1"
@@ -88,14 +89,34 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/battletech_classic" />
+                android:src="@mipmap/battletech_ia" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="2"
+                android:text="@string/battletech_ia"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_alpha_strike_ia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/alpha_strike_ia" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="2"
                 android:textAlignment="center"
-                android:text="@string/battletech_classic" />
+                android:text="@string/alpha_strike_ia" />
         </LinearLayout>
 
         <LinearLayout

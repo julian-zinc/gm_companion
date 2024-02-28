@@ -4,10 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.zinc.gmcompanion.R
-import com.zinc.gmcompanion.model.AdventurePart
-import com.zinc.gmcompanion.model.FateOdds
-import com.zinc.gmcompanion.model.MechType
-import com.zinc.gmcompanion.model.WitcherHomeland
+import com.zinc.gmcompanion.model.*
 import com.zinc.gmcompanion.presenter.Presenter
 import com.zinc.gmcompanion.view.secondaryFragments.*
 
@@ -17,7 +14,8 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
         const val WITCHER_COMBAT_FLOW_TAG = "WITCHER_COMBAT_FLOW_TAG"
         const val WITCHER_LIFE_TAG = "WITCHER_LIFE_TAG"
         const val ADVENTURE_GENERATOR_TAG = "ADVENTURE_GENERATOR_TAG"
-        const val BATTLETECH_CLASSIC_TAG = "BATTLETECH_CLASSIC_TAG"
+        const val BATTLETECH_IA_TAG = "BATTLETECH_IA_TAG"
+        const val ALPHA_STRIKE_IA_TAG = "ALPHA_STRIKE_IA_TAG"
         const val BATTLETECH_KAIJU_TAG = "BATTLETECH_KAIJU_TAG"
         const val MYTHIC_TAG = "MYTHIC_TAG"
         const val LANCE_GENERATOR_TAG = "LANCE_GENERATOR_TAG"
@@ -51,11 +49,12 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
 
 
     private fun getFragmentAndTag(secondaryFragment: ISecondaryFragment): Pair<Fragment, String> {
-        return when(secondaryFragment) {
+        return when (secondaryFragment) {
             is WitcherCombatFlowFragment -> WitcherCombatFlowFragment.newInstance() to WITCHER_COMBAT_FLOW_TAG
             is WitcherLifeEventsFragment -> WitcherLifeEventsFragment.newInstance() to WITCHER_LIFE_TAG
             is AdventureGeneratorFragment -> AdventureGeneratorFragment.newInstance() to ADVENTURE_GENERATOR_TAG
-            is BattletechClassicIAFragment -> BattletechClassicIAFragment.newInstance() to BATTLETECH_CLASSIC_TAG
+            is BattletechIAFragment -> BattletechIAFragment.newInstance() to BATTLETECH_IA_TAG
+            is AlphaStrikeIAFragment -> AlphaStrikeIAFragment.newInstance() to ALPHA_STRIKE_IA_TAG
             is BattletechKaijuIAFragment -> BattletechKaijuIAFragment.newInstance() to BATTLETECH_KAIJU_TAG
             is MythicFragment -> MythicFragment.newInstance() to MYTHIC_TAG
             is LanceGeneratorFragment -> LanceGeneratorFragment.newInstance() to LANCE_GENERATOR_TAG
@@ -92,6 +91,9 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
 
     override fun getRandomMechAttack(aggresivityValue: Int): String =
         presenter.battletechAI.generateMechAttack(applicationContext, aggresivityValue)
+
+    override fun getRandomAlphaStrikeIACard(mechRole: AlphaStrikeMechType): MechIACard =
+        presenter.alphaStrikeIA.generateCard(applicationContext, mechRole)
 
     override fun getRandomFate(odds: FateOdds, chaosValue: Int): String =
         presenter.mythic.generateFate(applicationContext, odds, chaosValue)

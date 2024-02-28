@@ -17,12 +17,12 @@ import com.zinc.gmcompanion.view.OnFragmentInteractionListener
 import kotlinx.android.synthetic.main.battleetch_classic_ia_fragment.*
 import kotlinx.android.synthetic.main.battleetch_classic_ia_fragment.view.*
 
-class BattletechClassicIAFragment : Fragment(), ISecondaryFragment, View.OnClickListener {
+class BattletechIAFragment : Fragment(), ISecondaryFragment, View.OnClickListener {
 
     private lateinit var mListener: OnFragmentInteractionListener
 
     companion object {
-        fun newInstance() = BattletechClassicIAFragment()
+        fun newInstance() = BattletechIAFragment()
     }
 
     private fun configureAggressivitySelector(

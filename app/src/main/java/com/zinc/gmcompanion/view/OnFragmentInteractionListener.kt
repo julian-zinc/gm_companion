@@ -1,9 +1,6 @@
 package com.zinc.gmcompanion.view
 
-import com.zinc.gmcompanion.model.AdventurePart
-import com.zinc.gmcompanion.model.FateOdds
-import com.zinc.gmcompanion.model.MechType
-import com.zinc.gmcompanion.model.WitcherHomeland
+import com.zinc.gmcompanion.model.*
 import com.zinc.gmcompanion.view.secondaryFragments.ISecondaryFragment
 
 interface OnFragmentInteractionListener {
@@ -16,6 +13,7 @@ interface OnFragmentInteractionListener {
     fun getRandomValues(): String
     fun getRandomMechMovement(mechType: MechType, aggresivityValue: Int): String
     fun getRandomMechAttack(aggresivityValue: Int): String
+    fun getRandomAlphaStrikeIACard(mechRole: AlphaStrikeMechType): MechIACard
     fun getRandomFate(odds: FateOdds, chaosValue: Int): String
     fun getRandomEvent(): String
     fun getRandomSceneChanges(chaosValue: Int): String

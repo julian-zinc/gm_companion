@@ -6,6 +6,7 @@ import com.zinc.gmcompanion.view.IView
 class Presenter : IPresenter {
     val theWitcher = TheWitcher()
     val battletechAI = BattletechAI()
+    val alphaStrikeIA = AlphaStrikeIA()
     val battletechLance = BattletechLance()
     val battletechAlphaStrike = BattletechAlphaStrike()
     val mythic = Mythic()

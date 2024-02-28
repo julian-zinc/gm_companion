@@ -69,8 +69,9 @@
     <string name="roll_style">Roll for a random <b>Style</b></string>
     <string name="roll_values">Roll for random <b>values</b></string>
     <string name="insert_age">Introduce tu edad y presiona "Generar"</string>
-    <string name="battletech_classic">Battlemech IA</string>
+    <string name="battletech_ia">Battlemech IA</string>
     <string name="battletech_kaiju">Battlekaiju IA</string>
     <string name="battletech_classic_title">Battletech classic IA</string>
     <string name="alpha_strike_title">Alpha Strike</string>
+    <string name="alpha_strike_ia">Alpha Strike IA</string>
 </resources>
