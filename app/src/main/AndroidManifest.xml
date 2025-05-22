@@ -3,6 +3,9 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.zinc.gmcompanion">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <dist:module dist:instant="true" />
 
     <application
@@ -11,7 +14,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".view.MainActivity"
+        <activity
+            android:name=".view.MainActivity"
             android:configChanges="orientation"
             android:exported="true">
             <intent-filter>

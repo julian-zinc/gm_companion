@@ -1,5 +1,6 @@
 package com.zinc.gmcompanion.view
 
+import android.view.View
 import com.zinc.gmcompanion.model.*
 import com.zinc.gmcompanion.view.secondaryFragments.ISecondaryFragment
 
@@ -21,4 +22,6 @@ interface OnFragmentInteractionListener {
     fun getMechLances(totalBV: Int, tolerance: Int, minMechs: Int, maxMechs: Int): String
     fun getASMechListAndPoints(totalBV: Int, tolerance: Int, minMechs: Int, maxMechs: Int): String
     fun getASMechLances(totalBV: Int, tolerance: Int, minMechs: Int, maxMechs: Int): String
+    fun generateMarvelEvent(event: View)
+    fun generateMarvelGame(event: View)
 }

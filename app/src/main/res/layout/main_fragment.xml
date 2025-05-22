@@ -20,7 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:constraint_referenced_ids="item_witcher_combat_flow,item_witcher_life_events,item_adventure_generator,item_battletech_ia,item_alpha_strike_ia,item_lance_generator,item_alpha_strike_generator,item_mythic,item_battletech_kaiju,item_2,item_3"
+            app:constraint_referenced_ids="item_witcher_combat_flow,item_witcher_life_events,item_marvel_united,item_adventure_generator,item_battletech_ia,item_alpha_strike_ia,item_lance_generator,item_alpha_strike_generator,item_mythic,item_battletech_kaiju,item_3"
             app:flow_wrapMode="aligned"
             app:flow_horizontalGap="10dp"
             app:flow_verticalGap="10dp"
@@ -54,6 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/witcher_life" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,12 +62,34 @@
                 android:textAlignment="center"
                 android:text="@string/witcher_life_events" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_marvel_united"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/marvel_united" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="2"
+                android:text="@string/marvel_united"
+                android:textAlignment="center" />
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/item_adventure_generator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnSpan="1"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -193,23 +216,6 @@
                 android:lines="2"
                 android:textAlignment="center"
                 android:text="@string/battletech_kaiju" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/item_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnSpan="1"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/random" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lines="2"
-                android:textAlignment="center"
-                android:text="@string/not_implemented" />
         </LinearLayout>
         <LinearLayout
             android:id="@+id/item_3"

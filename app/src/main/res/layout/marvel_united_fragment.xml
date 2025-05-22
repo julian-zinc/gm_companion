@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mason_family"
+        android:text="Mythic GM Emulator"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/players_tag"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Jugadores" />
+
+        <Button
+            android:id="@+id/btn_less"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="-"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/players_value"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:text="2"
+            android:textAlignment="center"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/btn_more"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="+"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/generate_game"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:text="Genera partida"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/heroes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Héroes: "
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/hero_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ubicación de los héroes: "
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/villain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Villano: "
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/villain_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ubicación del villano: "
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/clear_game"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#00000000"
+        android:text="Clear game" />
+
+    <Button
+        android:id="@+id/ia_generate_scene"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:text="Genera escena con IA"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/scene"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/clear_scene"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#00000000"
+        android:text="Clear Event"
+        android:visibility="gone" />
+
+
+</LinearLayout>

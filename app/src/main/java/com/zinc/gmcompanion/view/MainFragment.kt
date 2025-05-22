@@ -21,6 +21,7 @@ class MainFragment : Fragment(), View.OnClickListener {
         when (v?.id) {
             item_witcher_combat_flow.id -> mListener.setFragment(WitcherCombatFlowFragment())
             item_witcher_life_events.id -> mListener.setFragment(WitcherLifeEventsFragment())
+            item_marvel_united.id -> mListener.setFragment(MarvelUnitedFragment())
             item_adventure_generator.id -> mListener.setFragment(AdventureGeneratorFragment())
             item_battletech_ia.id -> mListener.setFragment(BattletechIAFragment())
             item_alpha_strike_ia.id -> mListener.setFragment(AlphaStrikeIAFragment())
@@ -28,7 +29,7 @@ class MainFragment : Fragment(), View.OnClickListener {
             item_mythic.id -> mListener.setFragment(MythicFragment())
             item_alpha_strike_generator.id -> mListener.setFragment(AlphaStrikeGeneratorFragment())
             item_lance_generator.id -> mListener.setFragment(LanceGeneratorFragment())
-            item_2.id, item_3.id, item_battletech_kaiju.id -> Toast.makeText(
+            item_3.id, item_battletech_kaiju.id -> Toast.makeText(
                 context,
                 getString(R.string.not_implemented),
                 Toast.LENGTH_SHORT
@@ -47,6 +48,7 @@ class MainFragment : Fragment(), View.OnClickListener {
         val view = inflater.inflate(R.layout.main_fragment, container, false)
         view.item_witcher_combat_flow.setOnClickListener(this)
         view.item_witcher_life_events.setOnClickListener(this)
+        view.item_marvel_united.setOnClickListener(this)
         view.item_adventure_generator.setOnClickListener(this)
         view.item_battletech_ia.setOnClickListener(this)
         view.item_alpha_strike_ia.setOnClickListener(this)
@@ -54,7 +56,6 @@ class MainFragment : Fragment(), View.OnClickListener {
         view.item_alpha_strike_generator.setOnClickListener(this)
         view.item_battletech_kaiju.setOnClickListener(this)
         view.item_mythic.setOnClickListener(this)
-        view.item_2.setOnClickListener(this)
         view.item_3.setOnClickListener(this)
         return view
     }

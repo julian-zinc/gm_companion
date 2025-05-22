@@ -1,6 +1,7 @@
 package com.zinc.gmcompanion.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.zinc.gmcompanion.R
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
         const val WITCHER_COMBAT_FLOW_TAG = "WITCHER_COMBAT_FLOW_TAG"
         const val WITCHER_LIFE_TAG = "WITCHER_LIFE_TAG"
         const val ADVENTURE_GENERATOR_TAG = "ADVENTURE_GENERATOR_TAG"
+        const val MARVEL_UNITED_TAG = "MARVEL_UNITED_TAG"
         const val BATTLETECH_IA_TAG = "BATTLETECH_IA_TAG"
         const val ALPHA_STRIKE_IA_TAG = "ALPHA_STRIKE_IA_TAG"
         const val BATTLETECH_KAIJU_TAG = "BATTLETECH_KAIJU_TAG"
@@ -52,6 +54,7 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
         return when (secondaryFragment) {
             is WitcherCombatFlowFragment -> WitcherCombatFlowFragment.newInstance() to WITCHER_COMBAT_FLOW_TAG
             is WitcherLifeEventsFragment -> WitcherLifeEventsFragment.newInstance() to WITCHER_LIFE_TAG
+            is MarvelUnitedFragment -> MarvelUnitedFragment.newInstance() to MARVEL_UNITED_TAG
             is AdventureGeneratorFragment -> AdventureGeneratorFragment.newInstance() to ADVENTURE_GENERATOR_TAG
             is BattletechIAFragment -> BattletechIAFragment.newInstance() to BATTLETECH_IA_TAG
             is AlphaStrikeIAFragment -> AlphaStrikeIAFragment.newInstance() to ALPHA_STRIKE_IA_TAG
@@ -153,5 +156,8 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
         minMechs,
         maxMechs
     )
+
+    override fun generateMarvelEvent(view: View) = presenter.marvel.generateMarvelEvent(view)
+    override fun generateMarvelGame(view: View) = presenter.marvel.generateMarvelGame(view)
 }
 

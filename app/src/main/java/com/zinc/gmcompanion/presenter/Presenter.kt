@@ -10,6 +10,7 @@ class Presenter : IPresenter {
     val battletechLance = BattletechLance()
     val battletechAlphaStrike = BattletechAlphaStrike()
     val mythic = Mythic()
+    val marvel = MarvelUnited()
     val icons = Icons()
     lateinit var view: IView
 }
