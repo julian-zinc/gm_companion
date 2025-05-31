@@ -83,7 +83,7 @@ class MarvelUnited {
         openAIService = retrofit.create(OpenAIService::class.java)
 
         val input =
-            "Haz una breve historia de un párrafo que justifique que los siguientes personajes de Marvel se enfrenten a un Villano concreto. Héroes: ${heroesSeleccionados}. Ubicación de los héroes: ${ubicacionHeroes}. Villano: ${villanoSeleccionado}. Ubicación del villano: ${ubicacionVillano}. Explica por qué están juntos estos héroes en concreto en su ubicación y cuál es el plan del villano en su propia ubicación. No expliques cómo derrotan los héroes al villano"
+            "En dos frases cortas, explica el plan del villano ${villanoSeleccionado} en ${ubicacionVillano} y cómo los héroes (${heroesSeleccionados}) van a tratar de detenerle"
         val request = ChatRequest(
             model = "gpt-4.1-nano", store = true, messages = listOf(Message("user", input))
         )
