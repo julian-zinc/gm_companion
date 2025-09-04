@@ -74,13 +74,13 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/hero_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ubicación de los héroes: "
-        android:textSize="18sp"
-        android:textStyle="bold" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/hero_location"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Ubicación de los héroes: "-->
+    <!--        android:textSize="18sp"-->
+    <!--        android:textStyle="bold" />-->
 
     <TextView
         android:id="@+id/villain"
@@ -91,13 +91,13 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/villain_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ubicación del villano: "
-        android:textSize="18sp"
-        android:textStyle="bold" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/villain_location"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Ubicación del villano: "-->
+    <!--        android:textSize="18sp"-->
+    <!--        android:textStyle="bold" />-->
 
     <Button
         android:id="@+id/clear_game"

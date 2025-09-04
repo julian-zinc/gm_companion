@@ -27,7 +27,18 @@ class MarvelUnited {
             "Avispa",
             "Iron Spider",
             "Spider cerdo",
-            "Bill Rayos Beta"
+            "Bill Rayos Beta",
+            "Spiderman",
+            "Miles Morales",
+            "Ghost Spider",
+            "Lobezno",
+            "Cíclope",
+            "Tormenta",
+            "Jean Grey",
+            "Profesor X",
+            "Bestia",
+            "Mística",
+            "Magneto"
         )
     }
 
@@ -37,7 +48,12 @@ class MarvelUnited {
             "Ultrón",
             "Taskmaster",
             "Rhino",
-            "Lagarto"
+            "Lagarto",
+            "Green Goblin",
+            "Mística",
+            "Magneto",
+            "Dientes de sable",
+            "Juggernaut"
         )
     }
 
@@ -60,8 +76,12 @@ class MarvelUnited {
         view.heroes?.text = "Héroes: $heroesSeleccionados"
 
         villanoSeleccionado = selectNFromList(1, getFullVillainList())
-        view.villain?.text = "Villano: $villanoSeleccionado"
+        while (heroesSeleccionados.contains(villanoSeleccionado)) {
+            villanoSeleccionado = selectNFromList(1, getFullVillainList())
+        }
 
+        view.villain?.text = "Villano: $villanoSeleccionado"
+/*
         ubicacionHeroes = selectNFromList(1, getFullLocationList())
         view.hero_location?.text = "Ubicación: $ubicacionHeroes"
 
@@ -69,7 +89,7 @@ class MarvelUnited {
         while (ubicacionVillano == ubicacionHeroes) {
             ubicacionVillano = selectNFromList(1, getFullLocationList())
         }
-        view.villain_location?.text = "Ubicación: $ubicacionVillano"
+        view.villain_location?.text = "Ubicación: $ubicacionVillano"*/
     }
 
     private fun selectNFromList(n: Int, list: List<String>): String =
@@ -83,7 +103,7 @@ class MarvelUnited {
         openAIService = retrofit.create(OpenAIService::class.java)
 
         val input =
-            "En dos frases cortas, explica el plan del villano ${villanoSeleccionado} en ${ubicacionVillano} y cómo los héroes (${heroesSeleccionados}) van a tratar de detenerle"
+            "En dos frases cortas, explica el plan del villano ${villanoSeleccionado} y cómo los héroes (${heroesSeleccionados}) van a tratar de detenerle"
         val request = ChatRequest(
             model = "gpt-4.1-nano", store = true, messages = listOf(Message("user", input))
         )
