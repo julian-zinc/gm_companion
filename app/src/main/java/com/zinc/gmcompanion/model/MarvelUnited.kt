@@ -19,41 +19,57 @@ class MarvelUnited {
     private fun getFullHeroList(): List<String> {
         return listOf(
             "Ant-Man",
-            "Viuda Negra",
-            "Capitán América",
-            "Capitana Marvel",
+            "Black Widow",
+            "Captain America",
+            "Captain Marvel",
             "Hulk",
             "Iron Man",
-            "Avispa",
+            "Wasp",
             "Iron Spider",
-            "Spider cerdo",
-            "Bill Rayos Beta",
-            "Spiderman",
+            "Spider-Ham",
+            "Bill Ray Beta",
+            "Spider-Man",
             "Miles Morales",
-            "Ghost Spider",
-            "Lobezno",
-            "Cíclope",
-            "Tormenta",
+            "Ghost-Spider",
+            "Wolverine",
+            "Ciclops",
+            "Storm",
             "Jean Grey",
-            "Profesor X",
-            "Bestia",
-            "Mística",
-            "Magneto"
+            "Professor X",
+            "Beast",
+            "Mystique",
+            "Magneto",
+            "Winter Soldier",
+            "Shuri",
+            "Black Panther",
+            "Peni Parker",
+            "Scarlet Spider",
+            "Silk",
+            "Spider-Man Noir",
+            "Spider-Punk",
+            "Symbiote Spider-Man",
+            "Anti-Venom",
+            "Superior Spider-Man"
         )
     }
 
     private fun getFullVillainList(): List<String> {
         return listOf(
-            "Cráneo Rojo",
-            "Ultrón",
+            "Red Skull",
+            "Ultron",
             "Taskmaster",
             "Rhino",
-            "Lagarto",
+            "Lizard",
             "Green Goblin",
-            "Mística",
+            "Mystique",
             "Magneto",
-            "Dientes de sable",
-            "Juggernaut"
+            "Sabretooth",
+            "Juggernaut",
+            "Anti-Venom",
+            "Superior Spider-Man",
+            "Morlun",
+            "Spot",
+            "Killmonger"
         )
     }
 
