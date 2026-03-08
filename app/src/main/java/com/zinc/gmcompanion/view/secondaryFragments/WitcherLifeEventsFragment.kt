@@ -12,11 +12,12 @@ import androidx.fragment.app.Fragment
 import com.zinc.gmcompanion.R
 import com.zinc.gmcompanion.model.WitcherHomeland
 import com.zinc.gmcompanion.view.OnFragmentInteractionListener
-import kotlinx.android.synthetic.main.witcher_life_fragment.*
-import kotlinx.android.synthetic.main.witcher_life_fragment.view.*
+import com.zinc.gmcompanion.databinding.WitcherLifeFragmentBinding
 
 class WitcherLifeEventsFragment : Fragment(), ISecondaryFragment, View.OnClickListener {
 
+    private var _binding: WitcherLifeFragmentBinding? = null
+    private val binding get() = _binding!!
     private lateinit var mListener: OnFragmentInteractionListener
 
     companion object {
@@ -27,15 +28,20 @@ class WitcherLifeEventsFragment : Fragment(), ISecondaryFragment, View.OnClickLi
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.witcher_life_fragment, container, false)
-        view?.north?.setOnClickListener(this)
-        view?.nilfgaard?.setOnClickListener(this)
-        view?.elf?.setOnClickListener(this)
-        view?.dwarf?.setOnClickListener(this)
-        view?.age_button?.setOnClickListener(this)
-        view?.roll_style?.setOnClickListener(this)
-        view?.roll_values?.setOnClickListener(this)
-        return view
+        _binding = WitcherLifeFragmentBinding.inflate(inflater, container, false)
+        binding.north.setOnClickListener(this)
+        binding.nilfgaard.setOnClickListener(this)
+        binding.elf.setOnClickListener(this)
+        binding.dwarf.setOnClickListener(this)
+        binding.ageButton.setOnClickListener(this)
+        binding.rollStyle.setOnClickListener(this)
+        binding.rollValues.setOnClickListener(this)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onAttach(context: Context) {
@@ -53,26 +59,26 @@ class WitcherLifeEventsFragment : Fragment(), ISecondaryFragment, View.OnClickLi
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            north.id -> setEarlyLife(mListener.getRandomEarlyLife(WitcherHomeland.NORTHERN_KINGDOMS))
-            nilfgaard.id -> setEarlyLife(mListener.getRandomEarlyLife(WitcherHomeland.NILFGAARD))
-            elf.id -> setEarlyLife(mListener.getRandomEarlyLife(WitcherHomeland.ELF))
-            dwarf.id -> setEarlyLife(mListener.getRandomEarlyLife(WitcherHomeland.DWARF))
-            age_button.id -> setLifeEvents(mListener.getRandomLifeEvents(age_seekbar.progress))
-            roll_style.id -> setStyle(mListener.getRandomStyle())
-            roll_values.id -> setValues(mListener.getRandomValues())
+            binding.north.id -> setEarlyLife(mListener.getRandomEarlyLife(WitcherHomeland.NORTHERN_KINGDOMS))
+            binding.nilfgaard.id -> setEarlyLife(mListener.getRandomEarlyLife(WitcherHomeland.NILFGAARD))
+            binding.elf.id -> setEarlyLife(mListener.getRandomEarlyLife(WitcherHomeland.ELF))
+            binding.dwarf.id -> setEarlyLife(mListener.getRandomEarlyLife(WitcherHomeland.DWARF))
+            binding.ageButton.id -> setLifeEvents(mListener.getRandomLifeEvents(binding.ageSeekbar.progress))
+            binding.rollStyle.id -> setStyle(mListener.getRandomStyle())
+            binding.rollValues.id -> setValues(mListener.getRandomValues())
         }
     }
 
     private fun setValues(randomValues: String) {
-        values.text = Html.fromHtml(randomValues)
+        binding.values.text = Html.fromHtml(randomValues)
     }
 
     private fun setStyle(randomStyle: String) {
-        style.text = Html.fromHtml(randomStyle)
+        binding.style.text = Html.fromHtml(randomStyle)
     }
 
     private fun setLifeEvents(randomLifeEvents: String) {
-        life_events.text = Html.fromHtml(randomLifeEvents)
+        binding.lifeEvents.text = Html.fromHtml(randomLifeEvents)
     }
 
     private fun setEarlyLife(randomEarlyLife: List<String>) {
@@ -83,14 +89,14 @@ class WitcherLifeEventsFragment : Fragment(), ISecondaryFragment, View.OnClickLi
             builder.append("<br>")
         }
         val text = builder.toString()
-        early_life.text = Html.fromHtml(text)
-        life_events.text = ""
-        age_seekbar.visibility = VISIBLE
-        age_layout.visibility = VISIBLE
-        insert_age.visibility = VISIBLE
-        age_seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.earlyLife.text = Html.fromHtml(text)
+        binding.lifeEvents.text = ""
+        binding.ageSeekbar.visibility = VISIBLE
+        binding.ageLayout.visibility = VISIBLE
+        binding.insertAge.visibility = VISIBLE
+        binding.ageSeekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                age_textview.text = Html.fromHtml(getString(R.string.age, progress))
+                binding.ageTextview.text = Html.fromHtml(getString(R.string.age, progress))
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {

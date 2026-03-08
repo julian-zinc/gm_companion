@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_marginTop="10dp">
-    <FrameLayout
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/container"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".view.MainActivity" />
-</ScrollView>
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <FrameLayout xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".view.MainActivity" />
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_arrow_back"
+        android:visibility="gone"
+        android:elevation="5dp"
+        android:padding="8dp"
+        android:contentDescription="Back" />
+</RelativeLayout>

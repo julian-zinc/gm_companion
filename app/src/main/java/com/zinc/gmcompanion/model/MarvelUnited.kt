@@ -2,7 +2,7 @@ package com.zinc.gmcompanion.model
 
 import android.view.View
 import com.zinc.gmcompanion.service.OpenAIService
-import kotlinx.android.synthetic.main.marvel_united_fragment.view.*
+import com.zinc.gmcompanion.databinding.MarvelUnitedFragmentBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,6 +15,8 @@ class MarvelUnited {
     lateinit var villanoSeleccionado: String
     lateinit var ubicacionVillano: String
     lateinit var ubicacionHeroes: String
+
+    private var previousHeroes: List<String> = emptyList()
 
     private fun getFullHeroList(): List<String> {
         return listOf(
@@ -86,32 +88,56 @@ class MarvelUnited {
         )
     }
 
-    fun generateMarvelGame(view: View) {
-        heroesSeleccionados =
-            selectNFromList(Integer.valueOf(view.players_value?.text.toString()), getFullHeroList())
-        view.heroes?.text = "Héroes: $heroesSeleccionados"
+    private fun getPersistentVillains(context: android.content.Context): MutableList<String> {
+        val prefs = context.getSharedPreferences("MarvelUnitedPrefs", android.content.Context.MODE_PRIVATE)
+        val villainsString = prefs.getString("previousVillains", "") ?: ""
+        return if (villainsString.isEmpty()) mutableListOf() else villainsString.split("|").toMutableList()
+    }
 
-        villanoSeleccionado = selectNFromList(1, getFullVillainList())
-        while (heroesSeleccionados.contains(villanoSeleccionado)) {
-            villanoSeleccionado = selectNFromList(1, getFullVillainList())
+    private fun savePersistentVillains(context: android.content.Context, villains: List<String>) {
+        val prefs = context.getSharedPreferences("MarvelUnitedPrefs", android.content.Context.MODE_PRIVATE)
+        prefs.edit().putString("previousVillains", villains.joinToString("|")).apply()
+    }
+
+    fun generateMarvelGame(binding: MarvelUnitedFragmentBinding, context: android.content.Context) {
+        val numPlayers = Integer.valueOf(binding.playersValue.text.toString())
+        
+        // Select heroes excluding previous ones from current session
+        val availableHeroes = getFullHeroList().filter { !previousHeroes.contains(it) }
+        val selectedHeroesList = availableHeroes.shuffled().take(numPlayers)
+        
+        previousHeroes = selectedHeroesList
+        heroesSeleccionados = selectedHeroesList.joinToString("\n• ", prefix = "• ")
+        binding.heroes.text = "Héroes:\n$heroesSeleccionados"
+
+        // Select villain excluding previous 5 (persistent) and current heroes
+        val persistentVillains = getPersistentVillains(context)
+        val availableVillains = getFullVillainList().filter { 
+            !persistentVillains.contains(it) && !selectedHeroesList.contains(it) 
+        }
+        
+        val selectedVillain = if (availableVillains.isNotEmpty()) {
+            availableVillains.shuffled().first()
+        } else {
+            // Fallback if everyone was recently used, pick one not in current heroes
+            getFullVillainList().filter { !selectedHeroesList.contains(it) }.shuffled().first()
         }
 
-        view.villain?.text = "Villano: $villanoSeleccionado"
-/*
-        ubicacionHeroes = selectNFromList(1, getFullLocationList())
-        view.hero_location?.text = "Ubicación: $ubicacionHeroes"
-
-        ubicacionVillano = selectNFromList(1, getFullLocationList())
-        while (ubicacionVillano == ubicacionHeroes) {
-            ubicacionVillano = selectNFromList(1, getFullLocationList())
+        // Update persistence: add new one to the end, keep only last 5
+        persistentVillains.add(selectedVillain)
+        if (persistentVillains.size > 5) {
+            persistentVillains.removeAt(0)
         }
-        view.villain_location?.text = "Ubicación: $ubicacionVillano"*/
+        savePersistentVillains(context, persistentVillains)
+        
+        villanoSeleccionado = selectedVillain
+        binding.villain.text = "Villano:\n• $villanoSeleccionado"
     }
 
     private fun selectNFromList(n: Int, list: List<String>): String =
         list.shuffled().take(n).joinToString(", ")
 
-    fun generateMarvelEvent(view: View) {
+    fun generateMarvelEvent(binding: MarvelUnitedFragmentBinding, context: android.content.Context) {
 
         val retrofit = Retrofit.Builder().baseUrl("https://api.openai.com/")
             .addConverterFactory(GsonConverterFactory.create()).build()
@@ -129,17 +155,17 @@ class MarvelUnited {
             ) {
                 if (response.isSuccessful) {
                     val message = response.body()?.choices?.firstOrNull()?.message?.content
-                    view.scene?.text = message ?: "Sin respuesta."
+                    binding.scene.text = message ?: "Sin respuesta."
 
-                    view.clear_scene?.visibility = View.VISIBLE
-                    view.scene?.visibility = View.VISIBLE
+                    binding.clearScene.visibility = View.VISIBLE
+                    binding.scene.visibility = View.VISIBLE
                 } else {
-                    view.scene?.text = "Error: ${response.message()}"
+                    binding.scene.text = "Error: ${response.message()}"
                 }
             }
 
             override fun onFailure(call: Call<ChatResponse>, t: Throwable) {
-                view.scene?.text = "Fallo: ${t.message}"
+                binding.scene.text = "Fallo: ${t.message}"
             }
         })
     }

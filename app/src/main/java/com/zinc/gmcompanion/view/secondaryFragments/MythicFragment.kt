@@ -14,37 +14,26 @@ import androidx.fragment.app.Fragment
 import com.zinc.gmcompanion.R
 import com.zinc.gmcompanion.model.FateOdds.*
 import com.zinc.gmcompanion.view.OnFragmentInteractionListener
-import kotlinx.android.synthetic.main.mythic_fragment.*
-import kotlinx.android.synthetic.main.mythic_fragment.view.*
+import com.zinc.gmcompanion.databinding.MythicFragmentBinding
 
 class MythicFragment : Fragment(), ISecondaryFragment, View.OnClickListener {
 
+    private var _binding: MythicFragmentBinding? = null
+    private val binding get() = _binding!!
     private lateinit var mListener: OnFragmentInteractionListener
 
     companion object {
         fun newInstance() = MythicFragment()
     }
 
-    private fun configureChaosSelector(
-        btnLess: Button?,
-        btnMore: Button?,
-        chaosEditText: EditText?
-    ) {
-        btnMore?.setOnClickListener {
-            val chaosValue = chaosEditText?.text.toString().toInt()
-            if (chaosValue < 9) chaosEditText?.setText(
-                Integer.valueOf(
-                    chaosValue + 1
-                ).toString()
-            )
+    private fun configureChaosSelector() {
+        binding.btnMore.setOnClickListener {
+            val chaosValue = binding.chaosValue.text.toString().toInt()
+            if (chaosValue < 9) binding.chaosValue.setText((chaosValue + 1).toString())
         }
-        btnLess?.setOnClickListener {
-            val chaosValue = chaosEditText?.text.toString().toInt()
-            if (chaosValue > 1) chaosEditText?.setText(
-                Integer.valueOf(
-                    chaosValue - 1
-                ).toString()
-            )
+        binding.btnLess.setOnClickListener {
+            val chaosValue = binding.chaosValue.text.toString().toInt()
+            if (chaosValue > 1) binding.chaosValue.setText((chaosValue - 1).toString())
         }
     }
 
@@ -52,81 +41,77 @@ class MythicFragment : Fragment(), ISecondaryFragment, View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.mythic_fragment, container, false)
+        _binding = MythicFragmentBinding.inflate(inflater, container, false)
 
-        view?.impossible?.setOnClickListener(this)
-        view?.no_way?.setOnClickListener(this)
-        view?.very_unlikely?.setOnClickListener(this)
-        view?.unlikely?.setOnClickListener(this)
-        view?.fifty_fifty?.setOnClickListener(this)
-        view?.somewhat_likely?.setOnClickListener(this)
-        view?.likely?.setOnClickListener(this)
-        view?.very_likely?.setOnClickListener(this)
-        view?.near_sure_thing?.setOnClickListener(this)
-        view?.a_sure_thing?.setOnClickListener(this)
-        view?.has_to_be?.setOnClickListener(this)
+        binding.impossible.setOnClickListener(this)
+        binding.noWay.setOnClickListener(this)
+        binding.veryUnlikely.setOnClickListener(this)
+        binding.unlikely.setOnClickListener(this)
+        binding.fiftyFifty.setOnClickListener(this)
+        binding.somewhatLikely.setOnClickListener(this)
+        binding.likely.setOnClickListener(this)
+        binding.veryLikely.setOnClickListener(this)
+        binding.nearSureThing.setOnClickListener(this)
+        binding.aSureThing.setOnClickListener(this)
+        binding.hasToBe.setOnClickListener(this)
 
-        view?.clear_fate?.setOnClickListener {
-            view.clear_fate?.visibility = GONE
-            view.fate_result?.visibility = GONE
+        binding.clearFate.setOnClickListener {
+            binding.clearFate.visibility = GONE
+            binding.fateResult.visibility = GONE
         }
 
 
-        view?.random_event?.setOnClickListener {
-            view.event?.text = Html.fromHtml(
+        binding.randomEvent.setOnClickListener {
+            binding.event.text = Html.fromHtml(
                 mListener.getRandomEvent()
             )
-            view.clear_event?.visibility = VISIBLE
-            view.event?.visibility = VISIBLE
+            binding.clearEvent.visibility = VISIBLE
+            binding.event.visibility = VISIBLE
         }
 
-        view?.clear_event?.setOnClickListener {
-            view.clear_event?.visibility = GONE
-            view.event?.visibility = GONE
+        binding.clearEvent.setOnClickListener {
+            binding.clearEvent.visibility = GONE
+            binding.event.visibility = GONE
         }
 
-        view?.new_scene?.setOnClickListener {
-            view.scene_changes?.text = Html.fromHtml(
-                mListener.getRandomSceneChanges(chaos_value.text.toString().toInt())
+        binding.newScene.setOnClickListener {
+            binding.sceneChanges.text = Html.fromHtml(
+                mListener.getRandomSceneChanges(binding.chaosValue.text.toString().toInt())
             )
-            view.clear_scene_changes?.visibility = VISIBLE
-            view.scene_changes?.visibility = VISIBLE
+            binding.clearSceneChanges.visibility = VISIBLE
+            binding.sceneChanges.visibility = VISIBLE
         }
 
-        view?.clear_scene_changes?.setOnClickListener {
-            view.clear_scene_changes?.visibility = GONE
-            view.scene_changes?.visibility = GONE
+        binding.clearSceneChanges.setOnClickListener {
+            binding.clearSceneChanges.visibility = GONE
+            binding.sceneChanges.visibility = GONE
         }
 
-        configureChaosSelector(view?.btn_less, view?.btn_more, view?.chaos_value)
-        return view
+        configureChaosSelector()
+        return binding.root
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            mListener = context
-        } else {
-            throw RuntimeException("$context must implement OnFragmentInteractionListener")
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            impossible.id -> view?.fate_result?.text = Html.fromHtml(mListener.getRandomFate(IMPOSSIBLE, chaos_value.text.toString().toInt()))
-            no_way.id -> view?.fate_result?.text = Html.fromHtml(mListener.getRandomFate(NO_WAY, chaos_value.text.toString().toInt()))
-            very_unlikely.id -> view?.fate_result?.text = Html.fromHtml(mListener.getRandomFate(VERY_UNLIKELY, chaos_value.text.toString().toInt()))
-            unlikely.id -> view?.fate_result?.text = Html.fromHtml(mListener.getRandomFate(UNLIKELY, chaos_value.text.toString().toInt()))
-            fifty_fifty.id -> view?.fate_result?.text = Html.fromHtml(mListener.getRandomFate(FIFTY_FIFTY, chaos_value.text.toString().toInt()))
-            somewhat_likely.id -> view?.fate_result?.text = Html.fromHtml(mListener.getRandomFate(SOMEWHAT_LIKELY, chaos_value.text.toString().toInt()))
-            likely.id -> view?.fate_result?.text = Html.fromHtml(mListener.getRandomFate(LIKELY, chaos_value.text.toString().toInt()))
-            very_likely.id -> view?.fate_result?.text = Html.fromHtml(mListener.getRandomFate(VERY_LIKELY, chaos_value.text.toString().toInt()))
-            near_sure_thing.id -> view?.fate_result?.text = Html.fromHtml(mListener.getRandomFate(NEAR_SURE_THING, chaos_value.text.toString().toInt()))
-            a_sure_thing.id -> view?.fate_result?.text = Html.fromHtml(mListener.getRandomFate(A_SURE_THING, chaos_value.text.toString().toInt()))
-            has_to_be.id -> view?.fate_result?.text = Html.fromHtml(mListener.getRandomFate(HAS_TO_BE, chaos_value.text.toString().toInt()))
+            binding.impossible.id -> binding.fateResult.text = Html.fromHtml(mListener.getRandomFate(IMPOSSIBLE, binding.chaosValue.text.toString().toInt()))
+            binding.noWay.id -> binding.fateResult.text = Html.fromHtml(mListener.getRandomFate(NO_WAY, binding.chaosValue.text.toString().toInt()))
+            binding.veryUnlikely.id -> binding.fateResult.text = Html.fromHtml(mListener.getRandomFate(VERY_UNLIKELY, binding.chaosValue.text.toString().toInt()))
+            binding.unlikely.id -> binding.fateResult.text = Html.fromHtml(mListener.getRandomFate(UNLIKELY, binding.chaosValue.text.toString().toInt()))
+            binding.fiftyFifty.id -> binding.fateResult.text = Html.fromHtml(mListener.getRandomFate(FIFTY_FIFTY, binding.chaosValue.text.toString().toInt()))
+            binding.somewhatLikely.id -> binding.fateResult.text = Html.fromHtml(mListener.getRandomFate(SOMEWHAT_LIKELY, binding.chaosValue.text.toString().toInt()))
+            binding.likely.id -> binding.fateResult.text = Html.fromHtml(mListener.getRandomFate(LIKELY, binding.chaosValue.text.toString().toInt()))
+            binding.veryLikely.id -> binding.fateResult.text = Html.fromHtml(mListener.getRandomFate(VERY_LIKELY, binding.chaosValue.text.toString().toInt()))
+            binding.nearSureThing.id -> binding.fateResult.text = Html.fromHtml(mListener.getRandomFate(NEAR_SURE_THING, binding.chaosValue.text.toString().toInt()))
+            binding.aSureThing.id -> binding.fateResult.text = Html.fromHtml(mListener.getRandomFate(A_SURE_THING, binding.chaosValue.text.toString().toInt()))
+            binding.hasToBe.id -> binding.fateResult.text = Html.fromHtml(mListener.getRandomFate(HAS_TO_BE, binding.chaosValue.text.toString().toInt()))
         }
-        view?.fate_result?.visibility = VISIBLE
-        view?.clear_fate?.visibility = VISIBLE
+        binding.fateResult.visibility = VISIBLE
+        binding.clearFate.visibility = VISIBLE
     }
 
     override fun setRandomLocation(randomLocationText: String) {

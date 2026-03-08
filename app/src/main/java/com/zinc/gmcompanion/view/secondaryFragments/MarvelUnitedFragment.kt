@@ -11,12 +11,12 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.zinc.gmcompanion.R
 import com.zinc.gmcompanion.view.OnFragmentInteractionListener
-import kotlinx.android.synthetic.main.marvel_united_fragment.view.*
-import kotlinx.android.synthetic.main.mythic_fragment.view.btn_less
-import kotlinx.android.synthetic.main.mythic_fragment.view.btn_more
+import com.zinc.gmcompanion.databinding.MarvelUnitedFragmentBinding
 
 class MarvelUnitedFragment : Fragment(), ISecondaryFragment, View.OnClickListener {
 
+    private var _binding: MarvelUnitedFragmentBinding? = null
+    private val binding get() = _binding!!
     private lateinit var mListener: OnFragmentInteractionListener
 
     companion object {
@@ -27,45 +27,38 @@ class MarvelUnitedFragment : Fragment(), ISecondaryFragment, View.OnClickListene
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.marvel_united_fragment, container, false)
+        _binding = MarvelUnitedFragmentBinding.inflate(inflater, container, false)
 
-        view?.ia_generate_scene?.setOnClickListener {
-            mListener.generateMarvelEvent(view)
+        binding.iaGenerateScene.setOnClickListener {
+            mListener.generateMarvelEvent(binding, requireContext())
         }
-        view?.generate_game?.setOnClickListener {
-            mListener.generateMarvelGame(view)
-        }
-
-        view?.clear_scene?.setOnClickListener {
-            view.clear_scene?.visibility = GONE
-            view.scene?.visibility = GONE
+        binding.generateGame.setOnClickListener {
+            mListener.generateMarvelGame(binding, requireContext())
         }
 
-        configureNumberOfPlayers(view?.btn_less, view?.btn_more, view?.players_value)
+        binding.clearScene.setOnClickListener {
+            binding.clearScene.visibility = GONE
+            binding.scene.visibility = GONE
+        }
 
-        return view
+        configureNumberOfPlayers()
+
+        return binding.root
     }
 
-    private fun configureNumberOfPlayers(
-        btnLess: Button?,
-        btnMore: Button?,
-        playersEditText: EditText?
-    ) {
-        btnMore?.setOnClickListener {
-            val playersValue = playersEditText?.text.toString().toInt()
-            if (playersValue < 4) playersEditText?.setText(
-                Integer.valueOf(
-                    playersValue + 1
-                ).toString()
-            )
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun configureNumberOfPlayers() {
+        binding.btnMore.setOnClickListener {
+            val playersValue = binding.playersValue.text.toString().toInt()
+            if (playersValue < 4) binding.playersValue.setText((playersValue + 1).toString())
         }
-        btnLess?.setOnClickListener {
-            val playersValue = playersEditText?.text.toString().toInt()
-            if (playersValue > 1) playersEditText?.setText(
-                Integer.valueOf(
-                    playersValue - 1
-                ).toString()
-            )
+        binding.btnLess.setOnClickListener {
+            val playersValue = binding.playersValue.text.toString().toInt()
+            if (playersValue > 1) binding.playersValue.setText((playersValue - 1).toString())
         }
     }
 

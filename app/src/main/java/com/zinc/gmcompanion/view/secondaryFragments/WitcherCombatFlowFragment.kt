@@ -10,11 +10,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.zinc.gmcompanion.R
 import com.zinc.gmcompanion.view.OnFragmentInteractionListener
-import kotlinx.android.synthetic.main.witcher_combat_flow_fragment.*
-import kotlinx.android.synthetic.main.witcher_combat_flow_fragment.view.*
+import com.zinc.gmcompanion.databinding.WitcherCombatFlowFragmentBinding
 
 class WitcherCombatFlowFragment: Fragment(), ISecondaryFragment, OnClickListener {
 
+    private var _binding: WitcherCombatFlowFragmentBinding? = null
+    private val binding get() = _binding!!
     private lateinit var mListener: OnFragmentInteractionListener
     private var defenseOptionsShown = false
     private var attackOptionsShown = false
@@ -28,94 +29,99 @@ class WitcherCombatFlowFragment: Fragment(), ISecondaryFragment, OnClickListener
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.witcher_combat_flow_fragment, container, false)
-        view.roll_location.setOnClickListener(this)
+        _binding = WitcherCombatFlowFragmentBinding.inflate(inflater, container, false)
+        binding.rollLocation.setOnClickListener(this)
 
-        view.defense_options.setOnClickListener(this)
-        view.attack_options.setOnClickListener(this)
+        binding.defenseOptions.setOnClickListener(this)
+        binding.attackOptions.setOnClickListener(this)
 
-        view.fail.setOnClickListener(this)
-        view.hit.setOnClickListener(this)
-        view.crit7.setOnClickListener(this)
-        view.crit10.setOnClickListener(this)
-        view.crit13.setOnClickListener(this)
-        view.crit15.setOnClickListener(this)
-        return view
+        binding.fail.setOnClickListener(this)
+        binding.hit.setOnClickListener(this)
+        binding.crit7.setOnClickListener(this)
+        binding.crit10.setOnClickListener(this)
+        binding.crit13.setOnClickListener(this)
+        binding.crit15.setOnClickListener(this)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onClick(v: View?) {
-        view?.random_location?.text = ""
+        binding.randomLocation.text = ""
         randomLocationShown = false
         when (v?.id) {
-            defense_options.id -> {
+            binding.defenseOptions.id -> {
                 if (defenseOptionsShown) {
-                    view?.defenses_str?.visibility = GONE
-                    view?.attacks_str?.visibility = GONE
+                    binding.defensesStr.visibility = GONE
+                    binding.attacksStr.visibility = GONE
                 } else {
-                    view?.defenses_str?.visibility = VISIBLE
-                    view?.attacks_str?.visibility = GONE
+                    binding.defensesStr.visibility = VISIBLE
+                    binding.attacksStr.visibility = GONE
                 }
                 defenseOptionsShown = !defenseOptionsShown
                 attackOptionsShown = false
 
             }
-            attack_options.id -> {
+            binding.attackOptions.id -> {
                 if (attackOptionsShown) {
-                    view?.defenses_str?.visibility = GONE
-                    view?.attacks_str?.visibility = GONE
+                    binding.defensesStr.visibility = GONE
+                    binding.attacksStr.visibility = GONE
                 } else {
-                    view?.defenses_str?.visibility = GONE
-                    view?.attacks_str?.visibility = VISIBLE
+                    binding.defensesStr.visibility = GONE
+                    binding.attacksStr.visibility = VISIBLE
                 }
                 attackOptionsShown = !attackOptionsShown
                 defenseOptionsShown = false
             }
-            fail.id -> {
-                view?.miss?.visibility = VISIBLE
-                view?.damage?.visibility = GONE
-                view?.critical_hit?.visibility = GONE
-                view?.roll_location?.visibility = GONE
+            binding.fail.id -> {
+                binding.miss.visibility = VISIBLE
+                binding.damage.visibility = GONE
+                binding.criticalHit.visibility = GONE
+                binding.rollLocation.visibility = GONE
             }
-            hit.id -> {
-                view?.miss?.visibility = GONE
-                view?.damage?.visibility = VISIBLE
-                view?.critical_hit?.visibility = GONE
-                view?.roll_location?.visibility = VISIBLE
+            binding.hit.id -> {
+                binding.miss.visibility = GONE
+                binding.damage.visibility = VISIBLE
+                binding.criticalHit.visibility = GONE
+                binding.rollLocation.visibility = VISIBLE
             }
-            crit7.id -> {
-                view?.miss?.visibility = GONE
-                view?.damage?.visibility = VISIBLE
-                view?.critical_hit?.visibility = VISIBLE
-                view?.critical_hit?.text = getString(R.string.critical, getString(R.string.simple), 3)
-                view?.roll_location?.visibility = GONE
+            binding.crit7.id -> {
+                binding.miss.visibility = GONE
+                binding.damage.visibility = VISIBLE
+                binding.criticalHit.visibility = VISIBLE
+                binding.criticalHit.text = getString(R.string.critical, getString(R.string.simple), 3)
+                binding.rollLocation.visibility = GONE
             }
-            crit10.id -> {
-                view?.miss?.visibility = GONE
-                view?.damage?.visibility = VISIBLE
-                view?.critical_hit?.visibility = VISIBLE
-                view?.critical_hit?.text = Html.fromHtml(getString(R.string.critical, getString(R.string.complex), 5))
-                view?.roll_location?.visibility = GONE
+            binding.crit10.id -> {
+                binding.miss.visibility = GONE
+                binding.damage.visibility = VISIBLE
+                binding.criticalHit.visibility = VISIBLE
+                binding.criticalHit.text = Html.fromHtml(getString(R.string.critical, getString(R.string.complex), 5))
+                binding.rollLocation.visibility = GONE
             }
-            crit13.id -> {
-                view?.miss?.visibility = GONE
-                view?.damage?.visibility = VISIBLE
-                view?.critical_hit?.visibility = VISIBLE
-                view?.critical_hit?.text = getString(R.string.critical, getString(R.string.difficult), 8)
-                view?.roll_location?.visibility = GONE
+            binding.crit13.id -> {
+                binding.miss.visibility = GONE
+                binding.damage.visibility = VISIBLE
+                binding.criticalHit.visibility = VISIBLE
+                binding.criticalHit.text = getString(R.string.critical, getString(R.string.difficult), 8)
+                binding.rollLocation.visibility = GONE
             }
-            crit15.id -> {
-                view?.miss?.visibility = GONE
-                view?.damage?.visibility = VISIBLE
-                view?.critical_hit?.visibility = VISIBLE
-                view?.critical_hit?.text = getString(R.string.critical, getString(R.string.deadly), 10)
-                view?.roll_location?.visibility = GONE
+            binding.crit15.id -> {
+                binding.miss.visibility = GONE
+                binding.damage.visibility = VISIBLE
+                binding.criticalHit.visibility = VISIBLE
+                binding.criticalHit.text = getString(R.string.critical, getString(R.string.deadly), 10)
+                binding.rollLocation.visibility = GONE
             }
-            roll_location.id -> {
+            binding.rollLocation.id -> {
                 if (randomLocationShown) {
-                    view?.random_location?.visibility = GONE
-                    view?.random_location?.text = ""
+                    binding.randomLocation.visibility = GONE
+                    binding.randomLocation.text = ""
                 } else {
-                    view?.random_location?.visibility = VISIBLE
+                    binding.randomLocation.visibility = VISIBLE
                     mListener.getRandomLocationText()
                 }
                 randomLocationShown = !randomLocationShown
@@ -133,6 +139,6 @@ class WitcherCombatFlowFragment: Fragment(), ISecondaryFragment, OnClickListener
     }
 
     override fun setRandomLocation(randomLocationText: String) {
-        view?.random_location?.text = randomLocationText
+        binding.randomLocation.text = randomLocationText
     }
 }

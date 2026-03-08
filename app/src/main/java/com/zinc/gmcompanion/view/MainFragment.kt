@@ -8,28 +8,28 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.zinc.gmcompanion.R
+import com.zinc.gmcompanion.databinding.MainFragmentBinding
 import com.zinc.gmcompanion.view.secondaryFragments.*
-import kotlinx.android.synthetic.main.main_fragment.*
-import kotlinx.android.synthetic.main.main_fragment.view.*
-
 
 class MainFragment : Fragment(), View.OnClickListener {
 
+    private var _binding: MainFragmentBinding? = null
+    private val binding get() = _binding!!
     private lateinit var mListener: OnFragmentInteractionListener
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            item_witcher_combat_flow.id -> mListener.setFragment(WitcherCombatFlowFragment())
-            item_witcher_life_events.id -> mListener.setFragment(WitcherLifeEventsFragment())
-            item_marvel_united.id -> mListener.setFragment(MarvelUnitedFragment())
-            item_adventure_generator.id -> mListener.setFragment(AdventureGeneratorFragment())
-            item_battletech_ia.id -> mListener.setFragment(BattletechIAFragment())
-            item_alpha_strike_ia.id -> mListener.setFragment(AlphaStrikeIAFragment())
+            binding.itemWitcherCombatFlow.id -> mListener.setFragment(WitcherCombatFlowFragment())
+            binding.itemWitcherLifeEvents.id -> mListener.setFragment(WitcherLifeEventsFragment())
+            binding.itemMarvelUnited.id -> mListener.setFragment(MarvelUnitedFragment())
+            binding.itemAdventureGenerator.id -> mListener.setFragment(AdventureGeneratorFragment())
+            binding.itemBattletechIa.id -> mListener.setFragment(BattletechIAFragment())
+            binding.itemAlphaStrikeIa.id -> mListener.setFragment(AlphaStrikeIAFragment())
 //            item_battletech_kaiju.id -> mListener.setFragment(BattletechKaijuIAFragment())
-            item_mythic.id -> mListener.setFragment(MythicFragment())
-            item_alpha_strike_generator.id -> mListener.setFragment(AlphaStrikeGeneratorFragment())
-            item_lance_generator.id -> mListener.setFragment(LanceGeneratorFragment())
-            item_3.id, item_battletech_kaiju.id -> Toast.makeText(
+            binding.itemMythic.id -> mListener.setFragment(MythicFragment())
+            binding.itemAlphaStrikeGenerator.id -> mListener.setFragment(AlphaStrikeGeneratorFragment())
+            binding.itemLanceGenerator.id -> mListener.setFragment(LanceGeneratorFragment())
+            binding.item3.id, binding.itemBattletechKaiju.id -> Toast.makeText(
                 context,
                 getString(R.string.not_implemented),
                 Toast.LENGTH_SHORT
@@ -45,19 +45,24 @@ class MainFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.main_fragment, container, false)
-        view.item_witcher_combat_flow.setOnClickListener(this)
-        view.item_witcher_life_events.setOnClickListener(this)
-        view.item_marvel_united.setOnClickListener(this)
-        view.item_adventure_generator.setOnClickListener(this)
-        view.item_battletech_ia.setOnClickListener(this)
-        view.item_alpha_strike_ia.setOnClickListener(this)
-        view.item_lance_generator.setOnClickListener(this)
-        view.item_alpha_strike_generator.setOnClickListener(this)
-        view.item_battletech_kaiju.setOnClickListener(this)
-        view.item_mythic.setOnClickListener(this)
-        view.item_3.setOnClickListener(this)
-        return view
+        _binding = MainFragmentBinding.inflate(inflater, container, false)
+        binding.itemWitcherCombatFlow.setOnClickListener(this)
+        binding.itemWitcherLifeEvents.setOnClickListener(this)
+        binding.itemMarvelUnited.setOnClickListener(this)
+        binding.itemAdventureGenerator.setOnClickListener(this)
+        binding.itemBattletechIa.setOnClickListener(this)
+        binding.itemAlphaStrikeIa.setOnClickListener(this)
+        binding.itemLanceGenerator.setOnClickListener(this)
+        binding.itemAlphaStrikeGenerator.setOnClickListener(this)
+        binding.itemBattletechKaiju.setOnClickListener(this)
+        binding.itemMythic.setOnClickListener(this)
+        binding.item3.setOnClickListener(this)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onAttach(context: Context) {

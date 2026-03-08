@@ -18,11 +18,12 @@ import com.zinc.gmcompanion.model.AlphaStrikeMechType
 import com.zinc.gmcompanion.model.BattletechAlphaStrike
 import com.zinc.gmcompanion.model.MechIA
 import com.zinc.gmcompanion.view.OnFragmentInteractionListener
-import kotlinx.android.synthetic.main.alpha_strike_ia_fragment.*
-import kotlinx.android.synthetic.main.alpha_strike_ia_fragment.view.*
+import com.zinc.gmcompanion.databinding.AlphaStrikeIaFragmentBinding
 
 class AlphaStrikeIAFragment : Fragment(), ISecondaryFragment, View.OnClickListener {
 
+    private var _binding: AlphaStrikeIaFragmentBinding? = null
+    private val binding get() = _binding!!
     private lateinit var mListener: OnFragmentInteractionListener
     val addedMechList: MutableList<MechIA> = arrayListOf()
 
@@ -30,18 +31,14 @@ class AlphaStrikeIAFragment : Fragment(), ISecondaryFragment, View.OnClickListen
         fun newInstance() = AlphaStrikeIAFragment()
     }
 
-    private fun configureNewMechSelector(
-        mechSpinner: Spinner?,
-        roleSpinner: Spinner?,
-        btnAdd: Button?
-    ) {
+    private fun configureNewMechSelector() {
         val mechArrayAdapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_item,
             BattletechAlphaStrike.getMechModelList()
         )
         mechArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        mechSpinner?.adapter = mechArrayAdapter
+        binding.mechSpinner.adapter = mechArrayAdapter
 
 
         val roleArrayAdapter = ArrayAdapter(
@@ -50,12 +47,12 @@ class AlphaStrikeIAFragment : Fragment(), ISecondaryFragment, View.OnClickListen
             AlphaStrikeMechType.values()
         )
         roleArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        roleSpinner?.adapter = roleArrayAdapter
+        binding.roleSpinner.adapter = roleArrayAdapter
 
-        btnAdd?.setOnClickListener {
+        binding.btnAdd.setOnClickListener {
             addMech(
-                AlphaStrikeMechType.valueOf(roleSpinner?.selectedItem.toString()),
-                mechSpinner?.selectedItem.toString()
+                AlphaStrikeMechType.valueOf(binding.roleSpinner.selectedItem.toString()),
+                binding.mechSpinner.selectedItem.toString()
             )
         }
     }
@@ -75,133 +72,98 @@ class AlphaStrikeIAFragment : Fragment(), ISecondaryFragment, View.OnClickListen
             4 -> addFourthMech(mech, role)
         }
 
-        if (addedMechList.count() >= 4) new_mech_group.visibility = GONE
+        if (addedMechList.count() >= 4) binding.newMechGroup.visibility = GONE
     }
 
     private fun addFirstMech(mech: String, role: AlphaStrikeMechType) {
-        mech1.text = mech
-        mech1_role.text = role.toString()
-        mech1_buttons.visibility = VISIBLE
+        binding.mech1.text = mech
+        binding.mech1Role.text = role.toString()
+        binding.mech1Buttons.visibility = VISIBLE
 
-        mech1_init_value.text = ""
-        mech1_init.visibility = VISIBLE
+        binding.mech1InitValue.text = ""
+        binding.mech1Init.visibility = VISIBLE
 
-        mech1_move_value.text = ""
-        mech1_move_layout.visibility = VISIBLE
-        mech1_move_btn.setOnClickListener { mech1_move_value.visibility = VISIBLE }
+        binding.mech1MoveValue.text = ""
+        binding.mech1MoveLayout.visibility = VISIBLE
+        binding.mech1MoveBtn.setOnClickListener { binding.mech1MoveValue.visibility = VISIBLE }
 
-        mech1_fire_value.text = ""
-        mech1_fire_layout.visibility = VISIBLE
-        mech1_fire_btn.setOnClickListener { mech1_fire_value.visibility = VISIBLE }
-
-//        mech1_remove_btn.visibility = VISIBLE
-//        mech1_remove_btn.setOnClickListener {
-//            addedMechList.removeAt(0)
-//            mech1_buttons.visibility = GONE
-//            mech1_init.visibility = GONE
-//            mech1_move_layout.visibility = GONE
-//            mech1_fire_layout.visibility = GONE
-//            mech1_remove_btn.visibility = GONE
-//        }
+        binding.mech1FireValue.text = ""
+        binding.mech1FireLayout.visibility = VISIBLE
+        binding.mech1FireBtn.setOnClickListener { binding.mech1FireValue.visibility = VISIBLE }
     }
 
     private fun addSecondMech(mech: String, role: AlphaStrikeMechType) {
-        mech1and2_divisor.visibility = VISIBLE
+        binding.mech1and2Divisor.visibility = VISIBLE
 
-        mech2.text = mech
-        mech2_role.text = role.toString()
-        mech2_buttons.visibility = VISIBLE
+        binding.mech2.text = mech
+        binding.mech2Role.text = role.toString()
+        binding.mech2Buttons.visibility = VISIBLE
 
-        mech2_init_value.text = ""
-        mech2_init.visibility = VISIBLE
+        binding.mech2InitValue.text = ""
+        binding.mech2Init.visibility = VISIBLE
 
-        mech2_move_value.text = ""
-        mech2_move_layout.visibility = VISIBLE
-        mech2_move_btn.setOnClickListener { mech2_move_value.visibility = VISIBLE }
+        binding.mech2MoveValue.text = ""
+        binding.mech2MoveLayout.visibility = VISIBLE
+        binding.mech2MoveBtn.setOnClickListener { binding.mech2MoveValue.visibility = VISIBLE }
 
-        mech2_fire_value.text = ""
-        mech2_fire_layout.visibility = VISIBLE
-        mech2_fire_btn.setOnClickListener { mech2_fire_value.visibility = VISIBLE }
-
-//        mech2_remove_btn.visibility = VISIBLE
-//        mech2_remove_btn.setOnClickListener {
-//            addedMechList.removeAt(0)
-//            mech2_buttons.visibility = GONE
-//            mech2_init.visibility = GONE
-//            mech2_move_layout.visibility = GONE
-//            mech2_fire_layout.visibility = GONE
-//            mech2_remove_btn.visibility = GONE
-//        }
+        binding.mech2FireValue.text = ""
+        binding.mech2FireLayout.visibility = VISIBLE
+        binding.mech2FireBtn.setOnClickListener { binding.mech2FireValue.visibility = VISIBLE }
     }
 
     private fun addThirdMech(mech: String, role: AlphaStrikeMechType) {
-        mech2and3_divisor.visibility = VISIBLE
-        mech3.text = mech
-        mech3_role.text = role.toString()
-        mech3_buttons.visibility = VISIBLE
+        binding.mech2and3Divisor.visibility = VISIBLE
+        binding.mech3.text = mech
+        binding.mech3Role.text = role.toString()
+        binding.mech3Buttons.visibility = VISIBLE
 
-        mech3_init_value.text = ""
-        mech3_init.visibility = VISIBLE
+        binding.mech3InitValue.text = ""
+        binding.mech3Init.visibility = VISIBLE
 
-        mech3_move_value.text = ""
-        mech3_move_layout.visibility = VISIBLE
-        mech3_move_btn.setOnClickListener { mech3_move_value.visibility = VISIBLE }
+        binding.mech3MoveValue.text = ""
+        binding.mech3MoveLayout.visibility = VISIBLE
+        binding.mech3MoveBtn.setOnClickListener { binding.mech3MoveValue.visibility = VISIBLE }
 
-        mech3_fire_value.text = ""
-        mech3_fire_layout.visibility = VISIBLE
-        mech3_fire_btn.setOnClickListener { mech3_fire_value.visibility = VISIBLE }
-
-//        mech3_remove_btn.visibility = VISIBLE
-//        mech3_remove_btn.setOnClickListener {
-//            addedMechList.removeAt(0)
-//            mech3_buttons.visibility = GONE
-//            mech3_init.visibility = GONE
-//            mech3_move_layout.visibility = GONE
-//            mech3_fire_layout.visibility = GONE
-//            mech3_remove_btn.visibility = GONE
-//        }
+        binding.mech3FireValue.text = ""
+        binding.mech3FireLayout.visibility = VISIBLE
+        binding.mech3FireBtn.setOnClickListener { binding.mech3FireValue.visibility = VISIBLE }
     }
 
     private fun addFourthMech(mech: String, role: AlphaStrikeMechType) {
-        mech3and4_divisor.visibility = VISIBLE
+        binding.mech3and4Divisor.visibility = VISIBLE
 
-        mech4.text = mech
-        mech4_role.text = role.toString()
-        mech4_buttons.visibility = VISIBLE
+        binding.mech4.text = mech
+        binding.mech4Role.text = role.toString()
+        binding.mech4Buttons.visibility = VISIBLE
 
-        mech4_init_value.text = ""
-        mech4_init.visibility = VISIBLE
+        binding.mech4InitValue.text = ""
+        binding.mech4Init.visibility = VISIBLE
 
-        mech4_move_value.text = ""
-        mech4_move_layout.visibility = VISIBLE
-        mech4_move_btn.setOnClickListener { mech4_move_value.visibility = VISIBLE }
+        binding.mech4MoveValue.text = ""
+        binding.mech4MoveLayout.visibility = VISIBLE
+        binding.mech4MoveBtn.setOnClickListener { binding.mech4MoveValue.visibility = VISIBLE }
 
-        mech4_fire_value.text = ""
-        mech4_fire_layout.visibility = VISIBLE
-        mech4_fire_btn.setOnClickListener { mech4_fire_value.visibility = VISIBLE }
-
-//        mech4_remove_btn.visibility = VISIBLE
-//        mech4_remove_btn.setOnClickListener {
-//            addedMechList.removeAt(0)
-//            mech4_buttons.visibility = GONE
-//            mech4_init.visibility = GONE
-//            mech4_move_layout.visibility = GONE
-//            mech4_fire_layout.visibility = GONE
-//            mech4_remove_btn.visibility = GONE
-//        }
+        binding.mech4FireValue.text = ""
+        binding.mech4FireLayout.visibility = VISIBLE
+        binding.mech4FireBtn.setOnClickListener { binding.mech4FireValue.visibility = VISIBLE }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.alpha_strike_ia_fragment, container, false)
-        configureNewMechSelector(view?.mech_spinner, view?.role_spinner, view?.btn_add)
+        _binding = AlphaStrikeIaFragmentBinding.inflate(inflater, container, false)
+        configureNewMechSelector()
 
-        view?.new_turn_btn?.setOnClickListener {
+        binding.newTurnBtn.setOnClickListener {
             newTurn()
         }
-        return view
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun newTurn() {
@@ -217,50 +179,50 @@ class AlphaStrikeIAFragment : Fragment(), ISecondaryFragment, View.OnClickListen
 
     private fun newTurnFirstMech() {
         val card = mListener.getRandomAlphaStrikeIACard(addedMechList[0].role)
-        mech1_init_value.text = card.initiative
+        binding.mech1InitValue.text = card.initiative
 
-        mech1_move_value.text = HtmlCompat.fromHtml(card.movement, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        binding.mech1MoveValue.text = HtmlCompat.fromHtml(card.movement, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
-        mech1_move_value.visibility = GONE
+        binding.mech1MoveValue.visibility = GONE
 
-        mech1_fire_value.text = HtmlCompat.fromHtml(card.combat, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        mech1_fire_value.visibility = GONE
+        binding.mech1FireValue.text = HtmlCompat.fromHtml(card.combat, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        binding.mech1FireValue.visibility = GONE
     }
 
     private fun newTurnSecondMech() {
         val card = mListener.getRandomAlphaStrikeIACard(addedMechList[1].role)
-        mech2_init_value.text = card.initiative
+        binding.mech2InitValue.text = card.initiative
 
-        mech2_move_value.text = HtmlCompat.fromHtml(card.movement, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        binding.mech2MoveValue.text = HtmlCompat.fromHtml(card.movement, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
-        mech2_move_value.visibility = GONE
+        binding.mech2MoveValue.visibility = GONE
 
-        mech2_fire_value.text = HtmlCompat.fromHtml(card.combat, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        mech2_fire_value.visibility = GONE
+        binding.mech2FireValue.text = HtmlCompat.fromHtml(card.combat, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        binding.mech2FireValue.visibility = GONE
     }
 
     private fun newTurnThirdMech() {
         val card = mListener.getRandomAlphaStrikeIACard(addedMechList[2].role)
-        mech3_init_value.text = card.initiative
+        binding.mech3InitValue.text = card.initiative
 
-        mech3_move_value.text = HtmlCompat.fromHtml(card.movement, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        binding.mech3MoveValue.text = HtmlCompat.fromHtml(card.movement, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
-        mech3_move_value.visibility = GONE
+        binding.mech3MoveValue.visibility = GONE
 
-        mech3_fire_value.text = HtmlCompat.fromHtml(card.combat, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        mech3_fire_value.visibility = GONE
+        binding.mech3FireValue.text = HtmlCompat.fromHtml(card.combat, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        binding.mech3FireValue.visibility = GONE
     }
 
     private fun newTurnFourthMech() {
         val card = mListener.getRandomAlphaStrikeIACard(addedMechList[3].role)
-        mech4_init_value.text = card.initiative
+        binding.mech4InitValue.text = card.initiative
 
-        mech4_move_value.text = HtmlCompat.fromHtml(card.movement, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        binding.mech4MoveValue.text = HtmlCompat.fromHtml(card.movement, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
-        mech4_move_value.visibility = GONE
+        binding.mech4MoveValue.visibility = GONE
 
-        mech4_fire_value.text = HtmlCompat.fromHtml(card.combat, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        mech4_fire_value.visibility = GONE
+        binding.mech4FireValue.text = HtmlCompat.fromHtml(card.combat, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        binding.mech4FireValue.visibility = GONE
     }
 
     override fun onAttach(context: Context) {

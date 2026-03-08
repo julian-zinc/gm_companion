@@ -8,7 +8,7 @@ import com.zinc.gmcompanion.R
 import com.zinc.gmcompanion.model.*
 import com.zinc.gmcompanion.presenter.Presenter
 import com.zinc.gmcompanion.view.secondaryFragments.*
-
+import com.zinc.gmcompanion.databinding.MarvelUnitedFragmentBinding
 
 class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
     companion object {
@@ -28,6 +28,22 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+        
+        supportActionBar?.hide()
+
+        val backButton: View = findViewById(R.id.back_button)
+        backButton.setOnClickListener {
+            supportFragmentManager.popBackStack()
+        }
+
+        supportFragmentManager.addOnBackStackChangedListener {
+            if (supportFragmentManager.backStackEntryCount > 0) {
+                backButton.visibility = View.VISIBLE
+            } else {
+                backButton.visibility = View.GONE
+            }
+        }
+
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container,
@@ -132,32 +148,31 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener, IView {
     )
 
     override fun getASMechListAndPoints(
-        totalPoints: Int,
+        totalBV: Int,
         tolerance: Int,
         minMechs: Int,
         maxMechs: Int
     ): String = presenter.battletechAlphaStrike.generateMechList(
         applicationContext,
-        totalPoints,
+        totalBV,
         tolerance,
         minMechs,
         maxMechs
     )
 
     override fun getASMechLances(
-        totalPoints: Int,
+        totalBV: Int,
         tolerance: Int,
         minMechs: Int,
         maxMechs: Int
     ): String = presenter.battletechAlphaStrike.getMechLances(
         applicationContext,
-        totalPoints,
+        totalBV,
         tolerance,
         minMechs,
         maxMechs
     )
 
-    override fun generateMarvelEvent(view: View) = presenter.marvel.generateMarvelEvent(view)
-    override fun generateMarvelGame(view: View) = presenter.marvel.generateMarvelGame(view)
+    override fun generateMarvelEvent(binding: MarvelUnitedFragmentBinding, context: android.content.Context) = presenter.marvel.generateMarvelEvent(binding, context)
+    override fun generateMarvelGame(binding: MarvelUnitedFragmentBinding, context: android.content.Context) = presenter.marvel.generateMarvelGame(binding, context)
 }
-

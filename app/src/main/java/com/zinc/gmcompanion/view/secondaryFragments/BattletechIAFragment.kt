@@ -14,37 +14,26 @@ import androidx.fragment.app.Fragment
 import com.zinc.gmcompanion.R
 import com.zinc.gmcompanion.model.MechType.*
 import com.zinc.gmcompanion.view.OnFragmentInteractionListener
-import kotlinx.android.synthetic.main.battleetch_classic_ia_fragment.*
-import kotlinx.android.synthetic.main.battleetch_classic_ia_fragment.view.*
+import com.zinc.gmcompanion.databinding.BattleetchClassicIaFragmentBinding
 
 class BattletechIAFragment : Fragment(), ISecondaryFragment, View.OnClickListener {
 
+    private var _binding: BattleetchClassicIaFragmentBinding? = null
+    private val binding get() = _binding!!
     private lateinit var mListener: OnFragmentInteractionListener
 
     companion object {
         fun newInstance() = BattletechIAFragment()
     }
 
-    private fun configureAggressivitySelector(
-        btnLess: Button?,
-        btnMore: Button?,
-        aggressivityEditText: EditText?
-    ) {
-        btnMore?.setOnClickListener {
-            val aggressivityValue = aggressivityEditText?.text.toString().toInt()
-            if (aggressivityValue < 9) aggressivityEditText?.setText(
-                Integer.valueOf(
-                    aggressivityValue + 1
-                ).toString()
-            )
+    private fun configureAggressivitySelector() {
+        binding.btnMore.setOnClickListener {
+            val aggressivityValue = binding.aggressivityValue.text.toString().toInt()
+            if (aggressivityValue < 9) binding.aggressivityValue.setText((aggressivityValue + 1).toString())
         }
-        btnLess?.setOnClickListener {
-            val aggressivityValue = aggressivityEditText?.text.toString().toInt()
-            if (aggressivityValue > 1) aggressivityEditText?.setText(
-                Integer.valueOf(
-                    aggressivityValue - 1
-                ).toString()
-            )
+        binding.btnLess.setOnClickListener {
+            val aggressivityValue = binding.aggressivityValue.text.toString().toInt()
+            if (aggressivityValue > 1) binding.aggressivityValue.setText((aggressivityValue - 1).toString())
         }
     }
 
@@ -52,110 +41,106 @@ class BattletechIAFragment : Fragment(), ISecondaryFragment, View.OnClickListene
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.battleetch_classic_ia_fragment, container, false)
+        _binding = BattleetchClassicIaFragmentBinding.inflate(inflater, container, false)
 
-        view?.brawler?.setOnClickListener(this)
-        view?.skirmisher?.setOnClickListener(this)
-        view?.flanker?.setOnClickListener(this)
-        view?.smasher?.setOnClickListener(this)
-        view?.striker?.setOnClickListener(this)
-        view?.cavalry?.setOnClickListener(this)
-        view?.artillery?.setOnClickListener(this)
-        view?.support?.setOnClickListener(this)
-        view?.sniper?.setOnClickListener(this)
+        binding.brawler.setOnClickListener(this)
+        binding.skirmisher.setOnClickListener(this)
+        binding.flanker.setOnClickListener(this)
+        binding.smasher.setOnClickListener(this)
+        binding.striker.setOnClickListener(this)
+        binding.cavalry.setOnClickListener(this)
+        binding.artillery.setOnClickListener(this)
+        binding.support.setOnClickListener(this)
+        binding.sniper.setOnClickListener(this)
 
-        view?.attack?.setOnClickListener {
-            view.mech_attack?.text = Html.fromHtml(
+        binding.attack.setOnClickListener {
+            binding.mechAttack.text = Html.fromHtml(
                 mListener.getRandomMechAttack(
-                    aggressivity_value.text.toString().toInt()
+                    binding.aggressivityValue.text.toString().toInt()
                 )
             )
-            view.clear_attack?.visibility = VISIBLE
-            view.mech_attack?.visibility = VISIBLE
+            binding.clearAttack.visibility = VISIBLE
+            binding.mechAttack.visibility = VISIBLE
         }
 
-        view?.clear_movement?.setOnClickListener {
-            view.clear_movement?.visibility = GONE
-            view.mech_movement?.visibility = GONE
+        binding.clearMovement.setOnClickListener {
+            binding.clearMovement.visibility = GONE
+            binding.mechMovement.visibility = GONE
         }
 
-        view?.clear_attack?.setOnClickListener {
-            view.clear_attack?.visibility = GONE
-            view.mech_attack?.visibility = GONE
+        binding.clearAttack.setOnClickListener {
+            binding.clearAttack.visibility = GONE
+            binding.mechAttack.visibility = GONE
         }
 
-        configureAggressivitySelector(view?.btn_less, view?.btn_more, view?.aggressivity_value)
-        return view
+        configureAggressivitySelector()
+        return binding.root
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            mListener = context
-        } else {
-            throw RuntimeException("$context must implement OnFragmentInteractionListener")
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            brawler.id -> view?.mech_movement?.text = Html.fromHtml(
+            binding.brawler.id -> binding.mechMovement.text = Html.fromHtml(
                 mListener.getRandomMechMovement(
                     BRAWLER,
-                    aggressivity_value.text.toString().toInt()
+                    binding.aggressivityValue.text.toString().toInt()
                 )
             )
-            skirmisher.id -> view?.mech_movement?.text = Html.fromHtml(
+            binding.skirmisher.id -> binding.mechMovement.text = Html.fromHtml(
                 mListener.getRandomMechMovement(
                     SKIRMISHER,
-                    aggressivity_value.text.toString().toInt()
+                    binding.aggressivityValue.text.toString().toInt()
                 )
             )
-            flanker.id -> view?.mech_movement?.text = Html.fromHtml(
+            binding.flanker.id -> binding.mechMovement.text = Html.fromHtml(
                 mListener.getRandomMechMovement(
                     FLANKER,
-                    aggressivity_value.text.toString().toInt()
+                    binding.aggressivityValue.text.toString().toInt()
                 )
             )
-            smasher.id -> view?.mech_movement?.text = Html.fromHtml(
+            binding.smasher.id -> binding.mechMovement.text = Html.fromHtml(
                 mListener.getRandomMechMovement(
                     SMASHER,
-                    aggressivity_value.text.toString().toInt()
+                    binding.aggressivityValue.text.toString().toInt()
                 )
             )
-            striker.id -> view?.mech_movement?.text = Html.fromHtml(
+            binding.striker.id -> binding.mechMovement.text = Html.fromHtml(
                 mListener.getRandomMechMovement(
                     STRIKER,
-                    aggressivity_value.text.toString().toInt()
+                    binding.aggressivityValue.text.toString().toInt()
                 )
             )
-            cavalry.id -> view?.mech_movement?.text = Html.fromHtml(
+            binding.cavalry.id -> binding.mechMovement.text = Html.fromHtml(
                 mListener.getRandomMechMovement(
                     CAVALRY,
-                    aggressivity_value.text.toString().toInt()
+                    binding.aggressivityValue.text.toString().toInt()
                 )
             )
-            artillery.id -> view?.mech_movement?.text = Html.fromHtml(
+            binding.artillery.id -> binding.mechMovement.text = Html.fromHtml(
                 mListener.getRandomMechMovement(
                     ARTILLERY,
-                    aggressivity_value.text.toString().toInt()
+                    binding.aggressivityValue.text.toString().toInt()
                 )
             )
-            support.id -> view?.mech_movement?.text = Html.fromHtml(
+            binding.support.id -> binding.mechMovement.text = Html.fromHtml(
                 mListener.getRandomMechMovement(
                     SUPPORT,
-                    aggressivity_value.text.toString().toInt()
+                    binding.aggressivityValue.text.toString().toInt()
                 )
             )
-            sniper.id -> view?.mech_movement?.text = Html.fromHtml(
+            binding.sniper.id -> binding.mechMovement.text = Html.fromHtml(
                 mListener.getRandomMechMovement(
                     SNIPER,
-                    aggressivity_value.text.toString().toInt()
+                    binding.aggressivityValue.text.toString().toInt()
                 )
             )
         }
-        view?.mech_movement?.visibility = VISIBLE
-        view?.clear_movement?.visibility = VISIBLE
+        binding.mechMovement.visibility = VISIBLE
+        binding.clearMovement.visibility = VISIBLE
     }
 
     override fun setRandomLocation(randomLocationText: String) {
